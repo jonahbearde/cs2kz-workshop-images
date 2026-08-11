@@ -3,6 +3,13 @@ import type { WorkshopItem } from "./types.js";
 const QUERY_FILES_URL = "https://api.steampowered.com/IPublishedFileService/QueryFiles/v1/";
 /** CS2 (and CS:GO before it) Workshop lives under app 730. */
 const DEFAULT_APP_ID = 730;
+/**
+ * Single search pass instead of full-corpus traversal (ADR 0003). Steam
+ * search results are relevance-ranked and drift between calls, so one pass
+ * samples ~83-95% of the KZ candidates; the additive-only repo invariant
+ * makes the miss a delayed discovery, not a correctness problem.
+ */
+const SEARCH_TEXT = "kz";
 const DEFAULT_NUM_PER_PAGE = 100;
 /**
  * QueryFiles only cursor-paginates past its ~500-page cap when a cursor is
@@ -53,7 +60,10 @@ export class WorkshopClient {
     this.onProgress = options.onProgress;
   }
 
-  /** Enumerates the whole Workshop corpus, paginating `QueryFiles` to exhaustion. */
+  /**
+   * Enumerates the KZ-relevant slice of the Workshop with one search pass
+   * (`search_text=kz`), cursor-paginating `QueryFiles` to exhaustion.
+   */
   async enumerate(): Promise<WorkshopItem[]> {
     const items: WorkshopItem[] = [];
     let cursor: string = INITIAL_CURSOR;
@@ -77,6 +87,7 @@ export class WorkshopClient {
       key: this.options.apiKey,
       appid: String(this.options.appId),
       numperpage: String(this.options.numPerPage),
+      search_text: SEARCH_TEXT,
       cursor,
       return_tags: "true",
     });

@@ -11,7 +11,7 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "list": "tsx src/cli/list.ts"
+    "list": "tsx --env-file-if-exists=.env src/cli/list.ts"
   },
   "devDependencies": {
     "@types/node": "^26.2.0",

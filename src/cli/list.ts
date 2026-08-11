@@ -12,12 +12,12 @@ async function main(): Promise<void> {
   const client = new WorkshopClient({
     apiKey,
     onProgress: (itemsSoFar) => {
-      process.stderr.write(`\rEnumerating the Workshop corpus... ${itemsSoFar} items`);
+      process.stderr.write(`\rSearching the Workshop for KZ maps... ${itemsSoFar} items`);
     },
   });
-  console.error("Enumerating the Workshop corpus (this paginates QueryFiles to exhaustion)...");
+  console.error("Searching the Workshop for KZ maps (search_text=kz, one pass)...");
   const items = await client.enumerate();
-  console.error(`\nEnumerated ${items.length} Workshop items.`);
+  console.error(`\nSearch returned ${items.length} Workshop items.`);
 
   const kzMaps = filterKzMaps(items);
   const winners = pickWinners(kzMaps);
