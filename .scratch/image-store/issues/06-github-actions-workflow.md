@@ -4,10 +4,14 @@
 
 **Blocked by:** 05 — Telegram sender + `pnpm scan`.
 
-**Status:** ready-for-agent
+**Status:** claimed
 
-- [ ] Workflow triggers on schedule and on manual dispatch
+- [x] Workflow triggers on schedule and on manual dispatch
 - [ ] A manual dispatch delivers the Telegram report from CI
-- [ ] `index.json` is committed back only when its content changed; no empty commits
-- [ ] Workflow never stages or commits image files
+- [x] `index.json` is committed back only when its content changed; no empty commits
+- [x] Workflow never stages or commits image files
 - [ ] A failing scan (simulated via a temporarily broken secret) sends the failure notification to Telegram
+
+## Comments
+
+- 2025-08-11: Implemented as `.github/workflows/scan.yml`. Items 1/3/4 verified by inspection (YAML parse-checked); the commit-back guard is `git add index.json` + `git diff --cached --quiet`, so images can never be staged and no empty commit is possible. A `concurrency: scan` group serializes runs so a dispatch and the schedule can't race on the push. Items 2/5 need a live run on GitHub: push, set the three secrets, then manual-dispatch once and once with a deliberately broken secret.

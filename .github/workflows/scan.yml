@@ -1,0 +1,46 @@
+name: Scan
+
+on:
+  schedule:
+    # 01:00 UTC = 09:00 Beijing.
+    - cron: "0 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Serialize runs so a manual dispatch and the schedule never race on the
+# index.json commit-back.
+concurrency:
+  group: scan
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Run the Scan
+        env:
+          STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: pnpm scan
+      - name: Commit index.json if it changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Stage index.json explicitly: the workflow never commits images.
+          git add index.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update index.json (Scan)"
+            git push
+          else
+            echo "index.json unchanged; nothing to commit."
+          fi
