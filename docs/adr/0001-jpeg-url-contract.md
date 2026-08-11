@@ -1,6 +1,6 @@
 # All-JPEG, filename-is-map-name public URL contract
 
-Consumers fetch images at `https://github.com/jonahbearde/cs2kz-workshop-images/raw/main/<map_name>.jpg`. We transcode every Workshop Preview image to JPEG (quality 90, original resolution) and name the file exactly after the Legal map name, so the URL is a pure function of the map name — no extension probing, no lookup required. We trade away source-format fidelity (some previews are PNG/WebP) because a predictable, guessable URL is worth more to consumers than lossless storage of a preview image. Reversing this later means rewriting every consumer reference, so it is locked in deliberately.
+Consumers fetch images at `https://github.com/jonahbearde/cs2kz-workshop-images/raw/main/images/<map_name>.jpg`. We transcode every Workshop Preview image to JPEG (quality 90, original resolution) and name the file exactly after the Legal map name, so the URL is a pure function of the map name — no extension probing, no lookup required. Images live in a flat `images/` directory (nothing else in it), keeping the repo root clean; this layout was settled before the contract ever shipped, so no consumer references exist against an earlier root-level path. We trade away source-format fidelity (some previews are PNG/WebP) because a predictable, guessable URL is worth more to consumers than lossless storage of a preview image. Reversing this later means rewriting every consumer reference, so it is locked in deliberately.
 
 ## Considered Options
 

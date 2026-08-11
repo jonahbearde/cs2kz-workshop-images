@@ -8,11 +8,11 @@ Other applications need a preview image for every CS2 Workshop KZ map, addressab
 
 ## Solution
 
-A public GitHub repo (`jonahbearde/cs2kz-workshop-images`) that stores exactly one JPEG per KZ map at the root, named after the map. A one-shot local script populates it from the Steam Web API. A daily GitHub Actions job re-enumerates the Workshop, diffs it against the repo, and posts a report to Telegram listing what is Missing and what is No-preview. The maintainer uploads Missing images by hand; the Scan never writes images.
+A public GitHub repo (`jonahbearde/cs2kz-workshop-images`) that stores exactly one JPEG per KZ map in a flat `images/` directory, named after the map. A one-shot local script populates it from the Steam Web API. A daily GitHub Actions job re-enumerates the Workshop, diffs it against the repo, and posts a report to Telegram listing what is Missing and what is No-preview. The maintainer uploads Missing images by hand; the Scan never writes images.
 
 ## User Stories
 
-1. As a consumer application, I want to fetch a map's preview image at `https://github.com/jonahbearde/cs2kz-workshop-images/raw/main/<name>.jpg`, so that I can render map thumbnails without scraping Steam.
+1. As a consumer application, I want to fetch a map's preview image at `https://github.com/jonahbearde/cs2kz-workshop-images/raw/main/images/<name>.jpg`, so that I can render map thumbnails without scraping Steam.
 2. As a consumer application, I want the URL to be a pure function of the map name (always `.jpg`), so that I never need to probe for the correct file extension.
 3. As a consumer application, I want images at original resolution, so that my thumbnails stay crisp at any display size.
 4. As a consumer application, I want an `index.json` mapping each map name to its Workshop metadata, so that I can link back to the Workshop page.
@@ -52,13 +52,13 @@ A public GitHub repo (`jonahbearde/cs2kz-workshop-images`) that stores exactly o
 
 - **WorkshopClient** — the only module that touches the network for Steam. Wraps `IPublishedFileService/QueryFiles` as a single search pass (`search_text=kz`, `appid=730`, cursor-paginated until exhausted) and returns `WorkshopItem[]` (`id`, `title`, `tags`, `timeUpdated`, `previewUrl`). Steam Web API key from `STEAM_API_KEY` env.
 - **Pipeline core (pure functions)** — `filterKzMaps(items)`, `pickWinners(maps)` (name → Winner), `originalImageUrl(previewUrl)`, `diffRepo(winners, repoImages)` → `{ have, missing, noPreview }`, `renderReport(diff)` → `string[]` (Telegram messages, each ≤ 4096 chars; header with counts, then one line per Missing entry `name → workshop page URL`, then a No-preview section), `buildIndex(repoImages, winners, previousIndex)` → index keyed by map name; prefers fresh Workshop metadata, falls back to the previous record for delisted maps.
-- **Repo IO seam** — thin interface over "which `.jpg` files exist at the root" and "read/write `index.json`", so pipeline tests can inject in-memory fakes.
+- **Repo IO seam** — thin interface over "which `.jpg` files exist under `images/`" and "read/write `index.json`", so pipeline tests can inject in-memory fakes.
 - **Image processing** — sharp-based download-and-transcode; smoke-tested only.
 - **Telegram sender** — thin wrapper over the Bot API `sendMessage`; given a `string[]`, sends each element in order. Secrets `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
 
 ### CLI commands (pnpm scripts)
 
-- `pnpm download` — one-shot local seeder: enumerate → filter → Winners → download Preview images (skip existing files) → transcode → write `<name>.jpg` → generate `index.json`.
+- `pnpm download` — one-shot local seeder: enumerate → filter → Winners → download Preview images (skip existing files) → transcode → write `images/<name>.jpg` → generate `index.json`.
 - `pnpm check` — local validator for hand uploads: verify filenames are Legal map names, transcode non-JPEGs in place to JPEG, rebuild `index.json`.
 - `pnpm scan` — what the workflow runs: enumerate → diff against repo → rebuild and write `index.json` → print report → send Telegram messages.
 
@@ -79,7 +79,7 @@ A public GitHub repo (`jonahbearde/cs2kz-workshop-images`) that stores exactly o
 
 ### Repo layout & contract
 
-- Public repo `jonahbearde/cs2kz-workshop-images`; images flat at root; `index.json` at root; scripts under `scripts/` (or `src/`), workflow under `.github/workflows/`.
+- Public repo `jonahbearde/cs2kz-workshop-images`; images flat under `images/` (JPEGs only, one per Legal map name); `index.json` at root; scripts under `scripts/` (or `src/`), workflow under `.github/workflows/`.
 - Stack: Node + TypeScript + pnpm + sharp. Node version pinned via `packageManager` / engines.
 
 ### ADRs to be created

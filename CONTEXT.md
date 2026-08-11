@@ -1,6 +1,6 @@
 # CS2 KZ Workshop Images
 
-A GitHub-hosted image store: one preview image per CS2 Workshop KZ climb map, referenced by other applications via raw URLs like `https://github.com/<owner>/cs2kz-workshop-images/raw/main/kz_ozark.jpg`.
+A GitHub-hosted image store: one preview image per CS2 Workshop KZ climb map, referenced by other applications via raw URLs like `https://github.com/<owner>/cs2kz-workshop-images/raw/main/images/kz_ozark.jpg`.
 
 ## Language
 
