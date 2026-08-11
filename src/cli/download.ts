@@ -4,11 +4,13 @@ import { mkdir, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { filterKzMaps } from "../pipeline/filter.js";
 import { originalImageUrl } from "../pipeline/images.js";
+import { rebuildIndexFile } from "../pipeline/indexer.js";
 import { toJpeg } from "../pipeline/transcode.js";
 import { pickWinners } from "../pipeline/winners.js";
 import { WorkshopClient } from "../workshop/client.js";
 
 const IMAGES_DIR = "images";
+const INDEX_FILE = "index.json";
 
 function parseLimit(argv: string[]): number | undefined {
   const index = argv.indexOf("--limit");
@@ -89,6 +91,21 @@ async function main(): Promise<void> {
   console.error(
     `\nDone: ${downloaded} downloaded, ${skipped} skipped (present), ${noPreview} without preview, ${failures.length} failed.`,
   );
+
+  // Rebuild index.json from the images on disk (source of truth), enriched
+  // with this run's Workshop metadata (ADR 0002). The full winners map is
+  // used, not the --limit slice, so every stored map gets its metadata.
+  const index = await rebuildIndexFile({
+    imagesDir: IMAGES_DIR,
+    indexPath: INDEX_FILE,
+    winners,
+  });
+  console.error(
+    index.outcome === "updated"
+      ? `index.json updated (${index.mapCount} maps).`
+      : `index.json unchanged (${index.mapCount} maps).`,
+  );
+
   if (failures.length > 0) {
     console.error(`Failed: ${failures.join(", ")}`);
     process.exit(1);

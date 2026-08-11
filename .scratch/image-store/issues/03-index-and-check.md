@@ -4,10 +4,14 @@
 
 **Blocked by:** 02 — Original-image download pipeline (`pnpm download`).
 
-**Status:** ready-for-agent
+**Status:** resolved
 
-- [ ] `pnpm download` produces `index.json` alongside the images, keyed by map name with Workshop metadata
-- [ ] A map present in the repo but absent from the enumeration keeps its previous index record
-- [ ] Rebuilding the index twice over an unchanged repo produces byte-identical output (fixture test)
-- [ ] `pnpm check` fixes a non-JPEG upload in place (transcoded to JPEG) and rejects a file with an illegal name
-- [ ] `pnpm check` rebuilds `index.json` to reflect hand-added images
+- [x] `pnpm download` produces `index.json` alongside the images, keyed by map name with Workshop metadata
+- [x] A map present in the repo but absent from the enumeration keeps its previous index record
+- [x] Rebuilding the index twice over an unchanged repo produces byte-identical output (fixture test)
+- [x] `pnpm check` fixes a non-JPEG upload in place (transcoded to JPEG) and rejects a file with an illegal name
+- [x] `pnpm check` rebuilds `index.json` to reflect hand-added images
+
+## Comments
+
+Implemented 2026-08-11. `src/pipeline/indexer.ts` builds the index repo-image-driven (files under `images/` are the source of truth): current Winner > previous index record > empty fallback record for hand uploads never seen in the Workshop. Serialization is deterministic (sorted keys, fixed record key order, 2-space indent, trailing newline) so automated commits cause no churn. `src/pipeline/check.ts` validates filename stems and transcodes non-JPEG files in place; it refuses to overwrite an existing `.jpg` for the same map. `pnpm check` is deliberately offline — no Steam API — so hand uploads stay a one-command local fix; the daily Scan enriches fallback records later (ADR 0002). Verified live: `pnpm download --limit 5` enriched the seeded 5 maps with real Workshop metadata, and a following `pnpm check` reported the index unchanged.
