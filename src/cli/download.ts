@@ -1,11 +1,10 @@
 import type { WorkshopItem } from "../workshop/types.js";
 import { existsSync } from "node:fs";
-import { mkdir, rename, writeFile } from "node:fs/promises";
+import { mkdir } from "node:fs/promises";
 import path from "node:path";
 import { filterKzMaps } from "../pipeline/filter.js";
-import { originalImageUrl } from "../pipeline/images.js";
 import { rebuildIndexFile } from "../pipeline/indexer.js";
-import { toJpeg } from "../pipeline/transcode.js";
+import { fetchPreviewJpeg, writeImageAtomic } from "../pipeline/store.js";
 import { pickWinners } from "../pipeline/winners.js";
 import { WorkshopClient } from "../workshop/client.js";
 
@@ -25,14 +24,8 @@ function parseLimit(argv: string[]): number | undefined {
 }
 
 async function downloadOne(winner: WorkshopItem, target: string): Promise<void> {
-  const url = originalImageUrl(winner.previewUrl);
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`HTTP ${res.status} from ${url}`);
-  const jpeg = await toJpeg(Buffer.from(await res.arrayBuffer()));
-  // Write aside, then rename: an interrupted run never leaves a half-written image.
-  const tmp = `${target}.tmp`;
-  await writeFile(tmp, jpeg);
-  await rename(tmp, target);
+  const jpeg = await fetchPreviewJpeg(winner.previewUrl);
+  await writeImageAtomic(target, jpeg);
 }
 
 async function main(): Promise<void> {

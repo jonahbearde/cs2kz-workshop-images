@@ -1,4 +1,4 @@
-name: Scan
+name: Sync
 
 on:
   schedule:
@@ -10,13 +10,13 @@ permissions:
   contents: write
 
 # Serialize runs so a manual dispatch and the schedule never race on the
-# index.json commit-back.
+# commit-back of images and index.json.
 concurrency:
-  group: scan
+  group: sync
   cancel-in-progress: false
 
 jobs:
-  scan:
+  sync:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,21 +26,22 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - name: Run the Scan
+      - name: Run the Sync
         env:
           STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: pnpm scan
-      - name: Commit index.json if it changed
+        run: pnpm sync
+      - name: Commit images and index.json if anything changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # Stage index.json explicitly: the workflow never commits images.
-          git add index.json
+          git add images index.json
           if ! git diff --cached --quiet; then
-            git commit -m "Update index.json (Scan)"
+            added=$(git diff --cached --diff-filter=A --name-only -- images/ | wc -l)
+            updated=$(git diff --cached --diff-filter=M --name-only -- images/ | wc -l)
+            git commit -m "Sync: add $added, update $updated image(s)"
             git push
           else
-            echo "index.json unchanged; nothing to commit."
+            echo "Nothing changed; nothing to commit."
           fi

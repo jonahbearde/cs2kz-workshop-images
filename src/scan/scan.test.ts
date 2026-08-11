@@ -15,18 +15,20 @@ function deps(overrides: Partial<ScanDeps> & { items?: WorkshopItem[]; repoMaps?
   const rebuiltWith: Array<Map<string, WorkshopItem>> = [];
   const items = overrides.items ?? [];
   const repoMaps = overrides.repoMaps ?? [];
+  const scanDeps: ScanDeps = {
+    enumerate: overrides.enumerate ?? (async () => items),
+    listRepoMaps: overrides.listRepoMaps ?? (async () => repoMaps),
+    rebuildIndex:
+      overrides.rebuildIndex ??
+      (async (winners) => {
+        rebuiltWith.push(winners);
+        return { outcome: "unchanged", mapCount: repoMaps.length };
+      }),
+    send: overrides.send ?? (async (text) => void sent.push(text)),
+  };
+  if (overrides.readIndex !== undefined) scanDeps.readIndex = overrides.readIndex;
   return {
-    deps: {
-      enumerate: overrides.enumerate ?? (async () => items),
-      listRepoMaps: overrides.listRepoMaps ?? (async () => repoMaps),
-      rebuildIndex:
-        overrides.rebuildIndex ??
-        (async (winners) => {
-          rebuiltWith.push(winners);
-          return { outcome: "unchanged", mapCount: repoMaps.length };
-        }),
-      send: overrides.send ?? (async (text) => void sent.push(text)),
-    },
+    deps: scanDeps,
     sent,
     rebuiltWith,
   };
@@ -83,7 +85,23 @@ describe("runScan", () => {
 
     await runScan(scanDeps);
 
-    expect(sent).toEqual(["✅ 1 | ⬆️ 0 | 🚫 0"]);
+    expect(sent).toEqual(["✅ 1 | ⬇️ 0 | 🔄 0 | 🚫 0"]);
+  });
+
+  it("reports stale maps when an index is supplied", async () => {
+    const items = [makeItem({ id: "1", title: "kz_a", previewUrl: "https://ugc.example/new.jpg/" })];
+    const { deps: scanDeps, sent } = deps({
+      items,
+      repoMaps: ["kz_a"],
+      readIndex: async () => ({
+        kz_a: { id: "1", previewUrl: "https://ugc.example/old.jpg/", timeUpdated: 1 },
+      }),
+    });
+
+    await runScan(scanDeps);
+
+    expect(sent[0]).toContain("🔄 1");
+    expect(sent[0]).toContain("🔄 Stale:");
   });
 
   it("sends a failure notification naming the cause when enumeration fails", async () => {

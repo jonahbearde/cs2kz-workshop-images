@@ -1,7 +1,7 @@
 export interface TelegramClientOptions {
   /** Bot token from BotFather (`TELEGRAM_BOT_TOKEN`). */
   botToken: string;
-  /** Chat the Scan reports to (`TELEGRAM_CHAT_ID`), typically a private chat. */
+  /** Chat the Scan and Sync report to (`TELEGRAM_CHAT_ID`), typically a private chat. */
   chatId: string;
 }
 

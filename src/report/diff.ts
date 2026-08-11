@@ -1,6 +1,8 @@
+import type { WorkshopIndex } from "../pipeline/indexer.js";
+import { originalImageUrl } from "../pipeline/images.js";
 import type { WorkshopItem } from "../workshop/types.js";
 
-/** A Missing map together with the link the maintainer needs to act on it. */
+/** A map the Sync must (re-)download, together with the link behind the change. */
 export interface MissingMap {
   name: string;
   /** Workshop page of the Winner. */
@@ -8,14 +10,17 @@ export interface MissingMap {
 }
 
 /**
- * The Scan's view of the world: every Winner partitioned against the images
- * already in the repo. Pure data — rendering lives in `render.ts`.
+ * The Sync's view of the world: every Winner partitioned against the images
+ * already in the repo and the Index records behind them. Pure data —
+ * rendering lives in `render.ts`.
  */
 export interface ScanDiff {
-  /** Winners whose `.jpg` is already stored in the repo. */
+  /** Winners whose stored `.jpg` still matches the winner's preview. */
   have: string[];
-  /** Winners with a preview image but no repo image — hand-upload candidates. */
+  /** Winners with a preview image but no repo image — download candidates. */
   missing: MissingMap[];
+  /** Stored maps whose winner's preview URL no longer matches the Index record (ADR 0004). */
+  stale: MissingMap[];
   /** Winners with no preview image at all; nothing can be downloaded for them. */
   noPreview: string[];
 }
@@ -28,16 +33,31 @@ export function workshopPageUrl(id: string): string {
 /**
  * Partitions every Winner against the repo's images. Repo maps with no
  * Winner (delisted or not enumerated this run) are ignored: the diff only
- * ever surfaces maps new to the repo. All buckets are sorted by map name so
- * rendering is deterministic.
+ * ever surfaces maps the Sync can act on. All buckets are sorted by map
+ * name so rendering is deterministic.
+ *
+ * Stale detection (ADR 0004): a stored map is Stale when the winner's
+ * current preview URL differs from the `previewUrl` recorded in the Index.
+ * The Index records original-resolution URLs, so the winner's URL is
+ * normalized before comparing. Maps with no record — or an empty one —
+ * cannot be judged stale and are left alone; a winner that lost its
+ * preview never displaces the stored image.
  */
-export function diffRepo(winners: Map<string, WorkshopItem>, repoMaps: string[]): ScanDiff {
+export function diffRepo(
+  winners: Map<string, WorkshopItem>,
+  repoMaps: string[],
+  index: WorkshopIndex = {},
+): ScanDiff {
   const stored = new Set(repoMaps);
-  const diff: ScanDiff = { have: [], missing: [], noPreview: [] };
+  const diff: ScanDiff = { have: [], missing: [], stale: [], noPreview: [] };
 
   for (const [name, winner] of [...winners.entries()].sort(([a], [b]) => a.localeCompare(b))) {
     if (stored.has(name)) {
-      diff.have.push(name);
+      if (winner.previewUrl !== "" && isStale(name, winner, index)) {
+        diff.stale.push({ name, workshopUrl: workshopPageUrl(winner.id) });
+      } else {
+        diff.have.push(name);
+      }
       continue;
     }
     if (winner.previewUrl === "") {
@@ -47,4 +67,10 @@ export function diffRepo(winners: Map<string, WorkshopItem>, repoMaps: string[])
     }
   }
   return diff;
+}
+
+function isStale(name: string, winner: WorkshopItem, index: WorkshopIndex): boolean {
+  const recorded = index[name]?.previewUrl;
+  if (recorded === undefined || recorded === "") return false;
+  return originalImageUrl(winner.previewUrl) !== recorded;
 }

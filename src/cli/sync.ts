@@ -1,5 +1,7 @@
+import path from "node:path";
 import { listRepoMaps, readIndexFile, rebuildIndexFile } from "../pipeline/indexer.js";
-import { runScan } from "../scan/scan.js";
+import { fetchPreviewJpeg, writeImageAtomic } from "../pipeline/store.js";
+import { runSync } from "../sync/sync.js";
 import { TelegramClient } from "../telegram/client.js";
 import { WorkshopClient } from "../workshop/client.js";
 
@@ -7,11 +9,14 @@ const IMAGES_DIR = "images";
 const INDEX_FILE = "index.json";
 
 /**
- * The daily Scan, runnable end-to-end on the maintainer's machine:
- * enumerate the Workshop, diff against images/, rebuild index.json, and
- * deliver the report to Telegram. The report is always sent, so silence
- * never means "the job died"; on failure a notification naming the cause
- * goes to the same chat before exiting non-zero.
+ * The daily Sync, runnable end-to-end on the maintainer's machine:
+ * enumerate the Workshop, diff against images/ (with Stale detection),
+ * send the report to Telegram, download every Missing preview and re-download
+ * every Stale one, send the run-result message, and rebuild index.json.
+ * Telegram never blocks the run — the store is the product — but any failed
+ * send or download marks the run red via a non-zero exit. On a fatal error a
+ * notification naming the cause goes to the same chat before exiting
+ * non-zero.
  */
 async function main(): Promise<void> {
   const apiKey = process.env.STEAM_API_KEY;
@@ -38,31 +43,39 @@ async function main(): Promise<void> {
   });
   const telegram = new TelegramClient({ botToken, chatId });
 
-  console.error("Scanning the Workshop (search_text=kz, one pass)...");
-  const result = await runScan({
+  console.error("Syncing with the Workshop (search_text=kz, one pass)...");
+  const result = await runSync({
     enumerate: () => client.enumerate(),
     listRepoMaps: () => listRepoMaps(IMAGES_DIR),
     readIndex: () => readIndexFile(INDEX_FILE),
     rebuildIndex: (winners) =>
       rebuildIndexFile({ imagesDir: IMAGES_DIR, indexPath: INDEX_FILE, winners }),
+    download: (previewUrl) => fetchPreviewJpeg(previewUrl),
+    write: (name, jpeg) => writeImageAtomic(path.join(IMAGES_DIR, `${name}.jpg`), jpeg),
     send: (text) => telegram.send(text),
+    sleep: (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
   });
 
   console.error("");
-  for (const [i, message] of result.messages.entries()) {
+  for (const [i, message] of [...result.report, ...result.result].entries()) {
     if (i > 0) console.log("");
     console.log(message);
   }
   console.error(
-    `\nindex.json ${result.index.outcome} (${result.index.mapCount} maps). ` +
-      `${result.messages.length} message(s) sent to Telegram.`,
+    `\n${result.outcome.downloaded.length} downloaded, ${result.outcome.updated.length} updated, ` +
+      `${result.outcome.failures.length} failed; index.json ${result.index.outcome} ` +
+      `(${result.index.mapCount} maps); telegram ${result.telegramFailed ? "FAILED" : "ok"}.`,
   );
+
+  if (result.outcome.failures.length > 0 || result.telegramFailed) {
+    process.exitCode = 1;
+  }
 }
 
 main().catch((error: unknown) => {
   console.error(error);
   // exitCode, not exit(): process.exit() after a fetch can trip a libuv
   // assertion crash on Windows (Node 24), and by this point the failure
-  // notification has already been sent inside runScan.
+  // notification has already been sent inside runSync.
   process.exitCode = 1;
 });

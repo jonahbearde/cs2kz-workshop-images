@@ -1,27 +1,34 @@
 import { describe, expect, it } from "vitest";
 import { makeItem } from "../pipeline/fixtures.js";
+import type { WorkshopIndex } from "../pipeline/indexer.js";
 import { diffRepo } from "./diff.js";
-import { TELEGRAM_MESSAGE_LIMIT, renderReport, splitIntoMessages } from "./render.js";
+import { TELEGRAM_MESSAGE_LIMIT, renderReport, renderResult, splitIntoMessages } from "./render.js";
 import type { ScanDiff } from "./diff.js";
+import type { SyncOutcome } from "./outcome.js";
 
-const emptyDiff: ScanDiff = { have: [], missing: [], noPreview: [] };
+const emptyDiff: ScanDiff = { have: [], missing: [], stale: [], noPreview: [] };
 
 describe("renderReport", () => {
   it("renders a counts header even for an empty diff", () => {
-    expect(renderReport(emptyDiff)).toEqual(["✅ 0 | ⬆️ 0 | 🚫 0"]);
+    expect(renderReport(emptyDiff)).toEqual(["✅ 0 | ⬇️ 0 | 🔄 0 | 🚫 0"]);
   });
 
-  it("shows all three counts in the header", () => {
+  it("shows all four counts in the header", () => {
+    const index: WorkshopIndex = {
+      kz_stale: { id: "8", previewUrl: "https://ugc.example/old.jpg/", timeUpdated: 1 },
+    };
     const diff = diffRepo(
       new Map([
         ["kz_have", makeItem({ title: "kz_have" })],
         ["kz_miss", makeItem({ id: "7", title: "kz_miss" })],
+        ["kz_stale", makeItem({ id: "8", title: "kz_stale", previewUrl: "https://ugc.example/new.jpg/" })],
         ["kz_none", makeItem({ title: "kz_none", previewUrl: "" })],
       ]),
-      ["kz_have"],
+      ["kz_have", "kz_stale"],
+      index,
     );
     const [message] = renderReport(diff);
-    expect(message!.split("\n")[0]).toBe("✅ 1 | ⬆️ 1 | 🚫 1");
+    expect(message!.split("\n")[0]).toBe("✅ 1 | ⬇️ 1 | 🔄 1 | 🚫 1");
   });
 
   it("pairs every missing map with its Workshop page link", () => {
@@ -33,7 +40,7 @@ describe("renderReport", () => {
       [],
     );
     const [message] = renderReport(diff);
-    expect(message).toContain("⬆️ Missing:");
+    expect(message).toContain("⬇️ Missing:");
     expect(message).toContain("kz_a: https://steamcommunity.com/sharedfiles/filedetails/?id=10");
     expect(message).toContain("kz_b: https://steamcommunity.com/sharedfiles/filedetails/?id=20");
     // sorted by map name
@@ -56,10 +63,34 @@ describe("renderReport", () => {
     expect(message!.slice(noPreviewIndex)).not.toContain("steamcommunity.com");
   });
 
+  it("pairs every stale map with its Workshop page link, in its own section", () => {
+    const index: WorkshopIndex = {
+      kz_b: { id: "20", previewUrl: "https://ugc.example/b-old.jpg/", timeUpdated: 1 },
+      kz_a: { id: "10", previewUrl: "https://ugc.example/a-old.jpg/", timeUpdated: 1 },
+    };
+    const diff = diffRepo(
+      new Map([
+        ["kz_b", makeItem({ id: "20", title: "kz_b", previewUrl: "https://ugc.example/b-new.jpg/" })],
+        ["kz_a", makeItem({ id: "10", title: "kz_a", previewUrl: "https://ugc.example/a-new.jpg/" })],
+      ]),
+      ["kz_a", "kz_b"],
+      index,
+    );
+    const [message] = renderReport(diff);
+    const staleIndex = message!.indexOf("🔄 Stale:");
+    expect(staleIndex).toBeGreaterThan(-1);
+    const staleSection = message!.slice(staleIndex);
+    expect(staleSection).toContain("kz_a: https://steamcommunity.com/sharedfiles/filedetails/?id=10");
+    expect(staleSection).toContain("kz_b: https://steamcommunity.com/sharedfiles/filedetails/?id=20");
+    // sorted by map name
+    expect(staleSection.indexOf("kz_a:")).toBeLessThan(staleSection.indexOf("kz_b:"));
+  });
+
   it("omits sections that have nothing to report", () => {
     const diff = diffRepo(new Map([["kz_have", makeItem({ title: "kz_have" })]]), ["kz_have"]);
     const [message] = renderReport(diff);
-    expect(message).not.toContain("⬆️ Missing:");
+    expect(message).not.toContain("⬇️ Missing:");
+    expect(message).not.toContain("🔄 Stale:");
     expect(message).not.toContain("🚫 No preview:");
   });
 
@@ -75,9 +106,9 @@ describe("renderReport", () => {
     expect(messages).toHaveLength(1);
     expect(messages[0]).toBe(
       [
-        "✅ 1 | ⬆️ 1 | 🚫 0",
+        "✅ 1 | ⬇️ 1 | 🔄 0 | 🚫 0",
         "",
-        "⬆️ Missing:",
+        "⬇️ Missing:",
         "kz_miss: https://steamcommunity.com/sharedfiles/filedetails/?id=9",
       ].join("\n"),
     );
@@ -98,7 +129,56 @@ describe("renderReport", () => {
       expect(message.length).toBeGreaterThan(0);
     }
     // The header rides in the first message.
-    expect(messages[0]!.split("\n")[0]).toBe("✅ 0 | ⬆️ 300 | 🚫 0");
+    expect(messages[0]!.split("\n")[0]).toBe("✅ 0 | ⬇️ 300 | 🔄 0 | 🚫 0");
+  });
+});
+
+describe("renderResult", () => {
+  it("says nothing to do when every bucket is empty", () => {
+    expect(renderResult({ downloaded: [], updated: [], failures: [] })).toEqual(["✅ Nothing to do."]);
+  });
+
+  it("renders counts, then one section per non-empty bucket", () => {
+    const messages = renderResult({
+      downloaded: ["kz_a", "kz_b"],
+      updated: ["kz_c"],
+      failures: [{ name: "kz_d", reason: "HTTP 503 from https://ugc.example/d.jpg/" }],
+    });
+    expect(messages).toHaveLength(1);
+    expect(messages[0]).toBe(
+      [
+        "⬇️ 2 | 🔄 1 | ❌ 1",
+        "",
+        "⬇️ Downloaded:",
+        "kz_a",
+        "kz_b",
+        "",
+        "🔄 Updated:",
+        "kz_c",
+        "",
+        "❌ Failed:",
+        "kz_d: HTTP 503 from https://ugc.example/d.jpg/",
+      ].join("\n"),
+    );
+  });
+
+  it("omits empty buckets", () => {
+    const [message] = renderResult({ downloaded: ["kz_a"], updated: [], failures: [] });
+    expect(message).toBe(["⬇️ 1 | 🔄 0 | ❌ 0", "", "⬇️ Downloaded:", "kz_a"].join("\n"));
+  });
+
+  it("splits long results on line boundaries, each message within the limit", () => {
+    const outcome: SyncOutcome = {
+      downloaded: Array.from({ length: 300 }, (_, i) => `kz_synthetic_map_number_${i}`),
+      updated: [],
+      failures: [],
+    };
+    const messages = renderResult(outcome);
+    expect(messages.length).toBeGreaterThan(1);
+    for (const message of messages) {
+      expect(message.length).toBeLessThanOrEqual(TELEGRAM_MESSAGE_LIMIT);
+    }
+    expect(messages[0]!.split("\n")[0]).toBe("⬇️ 300 | 🔄 0 | ❌ 0");
   });
 });
 

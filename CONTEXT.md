@@ -22,15 +22,27 @@ _Avoid_: canonical entry, 正主
 The first preview image of a Workshop item, at original resolution (all `imw`/`imh`/`ima`/`impolicy` query parameters stripped from the UGC URL). Always stored as JPEG regardless of the source format.
 _Avoid_: thumbnail, screenshot
 
-### Scanning
+### Sync
+
+**Sync**:
+The daily scheduled job that brings this repo up to date with the Workshop: re-discovers KZ maps, diffs them against the images in this repo, downloads Missing previews, replaces Stale images, commits the result, and sends the Telegram report followed by a run-result message.
+_Avoid_: crawl, pipeline
 
 **Scan**:
-The daily scheduled job that re-discovers KZ maps from the Workshop, diffs them against the images in this repo, and reports the result to Telegram. It only ever surfaces maps that are new to the repo; it never downloads or writes images.
+The first phase of the Sync: enumerates the Workshop, diffs it against the repo, rebuilds the Index, and sends the report to Telegram. The Scan itself never downloads or writes images.
 _Avoid_: sync, crawl
 
 **Missing**:
-A KZ map whose winner has a preview image in the Workshop but no corresponding `.jpg` in this repo. These are what the maintainer uploads by hand.
-_Avoid_: to-download
+A KZ map whose winner has a preview image in the Workshop but no corresponding `.jpg` in this repo. The Sync downloads it automatically.
+_Avoid_: to-download, hand-upload candidate
+
+**Stale**:
+A KZ map whose `.jpg` exists in this repo but whose winner's preview URL differs from the `previewUrl` recorded in the Index. The Sync re-downloads the winner's preview and overwrites the stored image.
+_Avoid_: outdated, changed
+
+**Hand upload**:
+An image supplied by the maintainer instead of the Sync, as a fallback for when the Steam API misbehaves. It is a stopgap: the next Scan enriches its Index record with the winner's metadata, and a later Sync overwrites it whenever it diverges from the winner's preview.
+_Avoid_: manual sync
 
 **No-preview**:
 A KZ map whose winner has no preview image at all in the Workshop. Reported separately from Missing; nothing can be downloaded for it.

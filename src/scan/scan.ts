@@ -1,4 +1,5 @@
 import { filterKzMaps } from "../pipeline/filter.js";
+import type { WorkshopIndex } from "../pipeline/indexer.js";
 import { pickWinners } from "../pipeline/winners.js";
 import { diffRepo } from "../report/diff.js";
 import { renderReport } from "../report/render.js";
@@ -10,6 +11,11 @@ export interface ScanDeps {
   enumerate(): Promise<WorkshopItem[]>;
   /** Map names stored in this repo, read from images/. */
   listRepoMaps(): Promise<string[]>;
+  /**
+   * The Index as recorded before this run. Optional: without it the report
+   * cannot judge staleness (the Stale bucket stays empty).
+   */
+  readIndex?(): Promise<WorkshopIndex>;
   /** Rebuilds index.json from repo images enriched with this run's Winners. */
   rebuildIndex(winners: Map<string, WorkshopItem>): Promise<{
     outcome: "updated" | "unchanged";
@@ -37,7 +43,8 @@ export async function runScan(deps: ScanDeps): Promise<ScanResult> {
     const items = await deps.enumerate();
     const winners = pickWinners(filterKzMaps(items));
     const repoMaps = await deps.listRepoMaps();
-    const diff = diffRepo(winners, repoMaps);
+    const previousIndex = deps.readIndex !== undefined ? await deps.readIndex() : {};
+    const diff = diffRepo(winners, repoMaps, previousIndex);
     const index = await deps.rebuildIndex(winners);
     const messages = renderReport(diff);
     // Sequential awaits: messages arrive in order.
