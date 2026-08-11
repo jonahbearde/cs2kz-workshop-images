@@ -25,7 +25,7 @@ _Avoid_: thumbnail, screenshot
 ### Scanning
 
 **Scan**:
-The daily scheduled job that enumerates all KZ maps in the Workshop, diffs them against the images in this repo, and reports the result to Telegram. It never downloads or writes images.
+The daily scheduled job that re-discovers KZ maps from the Workshop, diffs them against the images in this repo, and reports the result to Telegram. It only ever surfaces maps that are new to the repo; it never downloads or writes images.
 _Avoid_: sync, crawl
 
 **Missing**:

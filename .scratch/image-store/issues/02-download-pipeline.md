@@ -2,7 +2,9 @@
 
 **What to build:** the maintainer can run one command that downloads the Preview image for every Winner and writes it to the repo root as `<name>.jpg`. This lands original-resolution URL handling (strip the entire query string, keep the trailing slash — dropping it yields 404), JPEG transcoding via sharp (quality 90, no resize), and the seeder's idempotency: files already present are skipped, so the run can be interrupted and resumed, and hand-uploaded images are never overwritten. A `--limit N` option exists purely so small-batch verification is possible before seeding the whole corpus.
 
-**Blocked by:** 01 — Project scaffold + Workshop enumeration tracer bullet.
+**Blocked by:** 01 — Project scaffold + Workshop enumeration tracer bullet; 08 — Search-based enumeration.
+
+**Note:** enumeration is a single search pass (ADR 0003), so the initial seed is probabilistically complete — maps the sample misses are surfaced by later Scans. Nothing is ever deleted.
 
 **Status:** ready-for-agent
 

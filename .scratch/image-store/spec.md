@@ -43,13 +43,14 @@ A public GitHub repo (`jonahbearde/cs2kz-workshop-images`) that stores exactly o
 - Domain vocabulary is fixed by `CONTEXT.md`: **KZ map**, **Legal map name**, **Winner**, **Preview image**, **Scan**, **Missing**, **No-preview**, **Index**. Implementation must use these terms.
 - A KZ map requires the `CS2` tag. No KZ tag is required. KZ map = `CS2` tag ∧ title matches `^kz_[a-z0-9_]+$`. Matching is strict: no lowercasing, no separator normalization; non-matching titles are dropped.
 - Winner among same-named items: most recent `time_updated`.
+- **Enumeration is a single search pass** (`search_text=kz`, `appid=730`, cursor-paginated to exhaustion; see ADR 0003). One pass empirically misses 5-17% of KZ candidates, which is acceptable because the repo is additive-only: the Scan only surfaces maps new to the repo and never removes images or index records, so a miss merely delays discovery. Accepted consequences: the one-shot seed is probabilistically complete, and daily report counts fluctuate between runs (deliberately not smoothed).
 - Preview image = the first preview image of the Winner (the single `preview_url` returned by the Workshop API).
 - Original-resolution URL = API `preview_url` with the entire query string stripped, **keeping the trailing slash** (dropping it yields 404).
 - All images transcoded to JPEG, quality 90, no resize.
 
 ### Modules
 
-- **WorkshopClient** — the only module that touches the network for Steam. Wraps `IPublishedFileService/QueryFiles` (paginated until exhausted) and returns `WorkshopItem[]` (`id`, `title`, `tags`, `timeUpdated`, `previewUrl`). Steam Web API key from `STEAM_API_KEY` env.
+- **WorkshopClient** — the only module that touches the network for Steam. Wraps `IPublishedFileService/QueryFiles` as a single search pass (`search_text=kz`, `appid=730`, cursor-paginated until exhausted) and returns `WorkshopItem[]` (`id`, `title`, `tags`, `timeUpdated`, `previewUrl`). Steam Web API key from `STEAM_API_KEY` env.
 - **Pipeline core (pure functions)** — `filterKzMaps(items)`, `pickWinners(maps)` (name → Winner), `originalImageUrl(previewUrl)`, `diffRepo(winners, repoImages)` → `{ have, missing, noPreview }`, `renderReport(diff)` → `string[]` (Telegram messages, each ≤ 4096 chars; header with counts, then one line per Missing entry `name → workshop page URL`, then a No-preview section), `buildIndex(repoImages, winners, previousIndex)` → index keyed by map name; prefers fresh Workshop metadata, falls back to the previous record for delisted maps.
 - **Repo IO seam** — thin interface over "which `.jpg` files exist at the root" and "read/write `index.json`", so pipeline tests can inject in-memory fakes.
 - **Image processing** — sharp-based download-and-transcode; smoke-tested only.

@@ -4,6 +4,8 @@
 
 **Blocked by:** 01 — Project scaffold + Workshop enumeration tracer bullet (needs only the Winner/item types, not the download pipeline).
 
+**Note:** enumeration is a single search sample (ADR 0003), so the report counts fluctuate between runs even when the repo is unchanged. This is expected and deliberately not smoothed — the diff and renderer stay pure functions of their inputs.
+
 **Status:** ready-for-agent
 
 - [ ] Diff correctly partitions fixture data into have / Missing / No-preview, including the empty-preview-URL case
