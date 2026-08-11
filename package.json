@@ -11,12 +11,16 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "list": "tsx --env-file-if-exists=.env src/cli/list.ts"
+    "list": "tsx --env-file-if-exists=.env src/cli/list.ts",
+    "download": "tsx --env-file-if-exists=.env src/cli/download.ts"
   },
   "devDependencies": {
     "@types/node": "^26.2.0",
     "tsx": "^4.23.11",
     "typescript": "^7.0.2",
     "vitest": "^4.1.10"
+  },
+  "dependencies": {
+    "sharp": "^0.35.3"
   }
 }
