@@ -13,7 +13,8 @@
     "test": "vitest run",
     "list": "tsx --env-file-if-exists=.env src/cli/list.ts",
     "download": "tsx --env-file-if-exists=.env src/cli/download.ts",
-    "check": "tsx src/cli/check.ts"
+    "check": "tsx src/cli/check.ts",
+    "scan": "tsx --env-file-if-exists=.env src/cli/scan.ts"
   },
   "devDependencies": {
     "@types/node": "^26.2.0",

@@ -108,11 +108,13 @@ async function main(): Promise<void> {
 
   if (failures.length > 0) {
     console.error(`Failed: ${failures.join(", ")}`);
-    process.exit(1);
+    // exitCode, not exit(): process.exit() after fetches can trip a libuv
+    // assertion crash on Windows (Node 24).
+    process.exitCode = 1;
   }
 }
 
 main().catch((error: unknown) => {
   console.error(error);
-  process.exit(1);
+  process.exitCode = 1;
 });

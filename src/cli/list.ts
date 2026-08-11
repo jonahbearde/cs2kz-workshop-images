@@ -31,5 +31,7 @@ async function main(): Promise<void> {
 
 main().catch((error: unknown) => {
   console.error(error);
-  process.exit(1);
+  // exitCode, not exit(): process.exit() after a fetch can trip a libuv
+  // assertion crash on Windows (Node 24).
+  process.exitCode = 1;
 });
