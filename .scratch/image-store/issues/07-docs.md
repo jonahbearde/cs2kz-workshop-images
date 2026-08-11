@@ -4,10 +4,14 @@
 
 **Blocked by:** 06 — GitHub Actions workflow.
 
-**Status:** ready-for-agent
+**Status:** resolved
 
-- [ ] README documents the consumer URL contract, repo layout, and the `download` / `check` / `scan` / `list` commands
-- [ ] Telegram guide takes a complete beginner from no bot to a working `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID`, targeting a private chat with the bot
-- [ ] Steam Web API key setup is documented for both local runs and the workflow secrets
-- [ ] ADRs 0001, 0002, and 0003 are linked from the README where the corresponding behaviour is described
-- [ ] All documented commands and secret names match the shipped implementation exactly
+- [x] README documents the consumer URL contract, repo layout, and the `download` / `check` / `scan` / `list` commands
+- [x] Telegram guide takes a complete beginner from no bot to a working `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID`, targeting a private chat with the bot
+- [x] Steam Web API key setup is documented for both local runs and the workflow secrets
+- [x] ADRs 0001, 0002, and 0003 are linked from the README where the corresponding behaviour is described
+- [x] All documented commands and secret names match the shipped implementation exactly
+
+## Comments
+
+- Resolved by adding `README.md`: consumer URL contract + index.json shape, repo layout, how-it-works overview, prerequisites (Steam key for local `.env` and Actions secrets), zero-to-working Telegram bot guide (BotFather → token → private chat → `getUpdates` chat id), all four commands (`download` incl. `--limit`, `list`, `check`, `scan`), the hand-upload workflow, and inline + footer links to ADRs 0001/0002/0003.
