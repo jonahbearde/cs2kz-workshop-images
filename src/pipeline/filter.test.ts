@@ -38,6 +38,11 @@ describe("filterKzMaps", () => {
     expect(filterKzMaps([makeItem({ tags: [] })])).toEqual([]);
   });
 
+  it("matches the CS2 tag case-insensitively (the Workshop stores it as Cs2)", () => {
+    const item = makeItem({ title: "kz_ozark", tags: ["Cs2", "Map", "Custom"] });
+    expect(filterKzMaps([item])).toEqual([item]);
+  });
+
   it("does not require a KZ tag", () => {
     const item = makeItem({ title: "kz_only_cs2_tag", tags: ["CS2", "Course"] });
     expect(filterKzMaps([item])).toEqual([item]);

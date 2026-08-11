@@ -9,10 +9,15 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
-  const client = new WorkshopClient({ apiKey });
+  const client = new WorkshopClient({
+    apiKey,
+    onProgress: (itemsSoFar) => {
+      process.stderr.write(`\rEnumerating the Workshop corpus... ${itemsSoFar} items`);
+    },
+  });
   console.error("Enumerating the Workshop corpus (this paginates QueryFiles to exhaustion)...");
   const items = await client.enumerate();
-  console.error(`Enumerated ${items.length} Workshop items.`);
+  console.error(`\nEnumerated ${items.length} Workshop items.`);
 
   const kzMaps = filterKzMaps(items);
   const winners = pickWinners(kzMaps);
