@@ -1,0 +1,22 @@
+{
+  "name": "cs2kz-workshop-images",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "One preview image per CS2 Workshop KZ map, addressable by a predictable GitHub raw URL.",
+  "packageManager": "pnpm@11.7.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "list": "tsx src/cli/list.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "tsx": "^4.23.11",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.10"
+  }
+}
