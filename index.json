@@ -24,6 +24,11 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/2371797014198335031/59A10BB2F292A196CEDADF0E1DC80840D297ECCD/",
     "timeUpdated": 1726587441
   },
+  "kz_2fast": {
+    "id": "3360229091",
+    "previewUrl": "https://images.steamusercontent.com/ugc/15600586329588115912/3C42DFBE612E61D7A94E503D876A7CE8DE143156/",
+    "timeUpdated": 1753709947
+  },
   "kz_adv_cursedjourney": {
     "id": "3451061007",
     "previewUrl": "https://images.steamusercontent.com/ugc/11157788534441148251/7D8C861FE6EC6CB40C1B71D2B86C7926847A80D1/",
@@ -38,6 +43,16 @@
     "id": "3466257543",
     "previewUrl": "https://images.steamusercontent.com/ugc/15044573767298172099/B23B7B005F0683E4B310004226A9745E032D50B5/",
     "timeUpdated": 1747246248
+  },
+  "kz_afterlife": {
+    "id": "3449771402",
+    "previewUrl": "https://images.steamusercontent.com/ugc/12457221637888705478/379820342D55755A14DAC26F0EFED62B2EE69D9F/",
+    "timeUpdated": 1747246395
+  },
+  "kz_alfama": {
+    "id": "3237967740",
+    "previewUrl": "https://images.steamusercontent.com/ugc/2478745271986210173/2FEB9C64CA111827748B0CA85AEDA085E12F2A48/",
+    "timeUpdated": 1755972280
   },
   "kz_alfie": {
     "id": "3467978154",
@@ -68,6 +83,11 @@
     "id": "3464249269",
     "previewUrl": "https://images.steamusercontent.com/ugc/18000622788424514047/B8F464246CA58489D54CFBA9EC03DACDD371CA57/",
     "timeUpdated": 1753469327
+  },
+  "kz_ambition": {
+    "id": "3231632688",
+    "previewUrl": "https://images.steamusercontent.com/ugc/13668060105064950493/91E6FAEC87A0BD93BF89F77E953190E627C65618/",
+    "timeUpdated": 1782856154
   },
   "kz_angina": {
     "id": "3636272568",
@@ -174,6 +194,11 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/17695120059033475483/76E4937347C7B3830EFF40D5C64EDDBA0249CE01/",
     "timeUpdated": 1784597504
   },
+  "kz_bigcastle": {
+    "id": "3428921927",
+    "previewUrl": "https://images.steamusercontent.com/ugc/15359731193409525070/0B4B5A8C4F0D55471C84D91E8C976BAA7C678491/",
+    "timeUpdated": 1772824071
+  },
   "kz_bkz_sahara": {
     "id": "3495283332",
     "previewUrl": "https://images.steamusercontent.com/ugc/15912573213626330525/DF94C2E5FDE71128BA26D80FA008477974DFF6E7/",
@@ -203,6 +228,11 @@
     "id": "3591354316",
     "previewUrl": "https://images.steamusercontent.com/ugc/14921007252863575947/99E9668941923F3CAAAC1DC5AF08998A2167E307/",
     "timeUpdated": 1762487205
+  },
+  "kz_bored": {
+    "id": "3672143345",
+    "previewUrl": "https://images.steamusercontent.com/ugc/16833686054317199677/44B3EFDA22AE563E8EC53217A9DB02DC1DC940C0/",
+    "timeUpdated": 1783082355
   },
   "kz_bozo": {
     "id": "3640501419",
@@ -238,6 +268,11 @@
     "id": "3552667502",
     "previewUrl": "https://images.steamusercontent.com/ugc/14774110843022982409/6C2CA4D2D0BD35F47CCC2C7B81BF7D454271F90D/",
     "timeUpdated": 1755705036
+  },
+  "kz_cavediving": {
+    "id": "3568614177",
+    "previewUrl": "https://images.steamusercontent.com/ugc/13923422911156540767/35ED52E478BA61FDB2341F3509D0C2E5939EAA7A/",
+    "timeUpdated": 1757931008
   },
   "kz_ccvsdwsb": {
     "id": "3653057179",
@@ -302,7 +337,7 @@
   "kz_claustrolapse": {
     "id": "3777707694",
     "previewUrl": "https://images.steamusercontent.com/ugc/10002387070979862369/381EB710A5595A75847AF94CFF113BF031B94DAF/",
-    "timeUpdated": 1786445594
+    "timeUpdated": 1786446814
   },
   "kz_claustrophilia": {
     "id": "3753577696",
@@ -314,10 +349,20 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/15086450630953463373/44F2CE5F46AF797F5606AC9F96ED12BEE45656D6/",
     "timeUpdated": 1785678248
   },
+  "kz_colors": {
+    "id": "3160120310",
+    "previewUrl": "https://images.steamusercontent.com/ugc/10284268908896067964/2A628FEAC6AFA4DDB79783141E1D0DBD60A5E9E9/",
+    "timeUpdated": 1762792957
+  },
   "kz_columns": {
     "id": "3717033895",
     "previewUrl": "https://images.steamusercontent.com/ugc/18087285225088660872/05A7C8FFBF86B71D8FF141FCB601C8D51EC04B48/",
     "timeUpdated": 1778690230
+  },
+  "kz_combobreaker": {
+    "id": "3329139574",
+    "previewUrl": "https://images.steamusercontent.com/ugc/2371796830441417033/41736FDBF0AC17B8030FC6B409A30254DC71250F/",
+    "timeUpdated": 1726059389
   },
   "kz_commhop_alco": {
     "id": "3690428751",
@@ -359,15 +404,30 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/13640949046288993662/50625E1ED24FB2A2C82E6288ED79AE816560178C/",
     "timeUpdated": 1778243987
   },
+  "kz_communityblock": {
+    "id": "3455289829",
+    "previewUrl": "https://images.steamusercontent.com/ugc/15623824990187349205/C9C1CCE0414AF7B98B464B746306A4948D101179/",
+    "timeUpdated": 1753188316
+  },
   "kz_communityjump3": {
     "id": "3202427394",
     "previewUrl": "https://images.steamusercontent.com/ugc/9991166041851316576/AC6A787D7BAE8956BFD1108B2F23BD6CBBF86ABC/",
     "timeUpdated": 1765191632
   },
+  "kz_concord": {
+    "id": "3287874815",
+    "previewUrl": "https://images.steamusercontent.com/ugc/2487760081964107320/3105CD26399936CB25C232508A04E23360056AD2/",
+    "timeUpdated": 1722362145
+  },
   "kz_concrete": {
     "id": "3095025786",
     "previewUrl": "https://images.steamusercontent.com/ugc/2261434545713599130/13DF5F1CB8E20DB5725104AD00B504779CBC27D8/",
     "timeUpdated": 1730552750
+  },
+  "kz_consequence": {
+    "id": "3250581189",
+    "previewUrl": "https://images.steamusercontent.com/ugc/9633806059174016914/FF19DC34ECFB4F94A6D89AA22D99682C6C7DC73C/",
+    "timeUpdated": 1785964266
   },
   "kz_consequence2": {
     "id": "3367621539",
@@ -379,6 +439,11 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/16396743188380338546/577A6FD3FBA896A8AF503033DFCCA7907AAE05FA/",
     "timeUpdated": 1780662061
   },
+  "kz_cruise": {
+    "id": "3755483837",
+    "previewUrl": "https://images.steamusercontent.com/ugc/14331087542792002282/7DD8503F65515C74ACC7A6772A2EF87F6191CE30/",
+    "timeUpdated": 1784486483
+  },
   "kz_cryoheaven": {
     "id": "3768942476",
     "previewUrl": "https://images.steamusercontent.com/ugc/15723524505726842160/3CD55D839C2D3F83A971B9EF932409CE1D858C9A/",
@@ -388,6 +453,11 @@
     "id": "3773925856",
     "previewUrl": "https://images.steamusercontent.com/ugc/18167199744127164746/0DB2EA2395F11E538238F2440399E63E8CB84F7D/",
     "timeUpdated": 1785624006
+  },
+  "kz_custos": {
+    "id": "3497876903",
+    "previewUrl": "https://images.steamusercontent.com/ugc/13252968557480046699/2F3067702D108CA75F39409F9915676B56D26BFD/",
+    "timeUpdated": 1749849659
   },
   "kz_d_decompile": {
     "id": "3630741626",
@@ -419,6 +489,11 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/9998950185193209151/C936785E00383F13F3B0D667C55988653860A9DE/",
     "timeUpdated": 1752872364
   },
+  "kz_deuxme": {
+    "id": "3291309096",
+    "previewUrl": "https://images.steamusercontent.com/ugc/2476500448939449699/5AD872739A29E6F0C2ECF55A1D073A4DEF8B3462/",
+    "timeUpdated": 1721270876
+  },
   "kz_devon": {
     "id": "3434238689",
     "previewUrl": "https://images.steamusercontent.com/ugc/13848756199962627707/5638707392A47F60234AAFDCA6D1F149481C1AE0/",
@@ -434,15 +509,30 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/10173336339406595719/9854DCFA11AC8306C6E0B84B753B54E241FEBF74/",
     "timeUpdated": 1778516246
   },
+  "kz_dog": {
+    "id": "3071622478",
+    "previewUrl": "https://images.steamusercontent.com/ugc/2277197144407632177/6A4D0C8D780BD231C44AE3322E00F2C39DF1ABFD/",
+    "timeUpdated": 1703393664
+  },
   "kz_dojo": {
     "id": "3616333913",
     "previewUrl": "https://images.steamusercontent.com/ugc/15815028595195590051/A60E53AC4CEEC1D287203F78E77356B60AE7C8D4/",
     "timeUpdated": 1770391451
   },
+  "kz_drunkards": {
+    "id": "3618502564",
+    "previewUrl": "https://images.steamusercontent.com/ugc/17187605843752102215/E8B2CF9953082BA8ADDE4793F2E0DBA564B26978/",
+    "timeUpdated": 1766720489
+  },
   "kz_dyd_ladderjumps": {
     "id": "3492840997",
     "previewUrl": "https://images.steamusercontent.com/ugc/15528735034122061836/7EC7DC962D47C309C2FBD24BD715CAE1BD25EEC7/",
     "timeUpdated": 1766763419
+  },
+  "kz_dzy_beyond_v2": {
+    "id": "3357772969",
+    "previewUrl": "https://images.steamusercontent.com/ugc/9674050900521952/3723327929A88A09C4CF53748BD1F35B9BFD5BF9/",
+    "timeUpdated": 1740995515
   },
   "kz_echo": {
     "id": "3520695638",
@@ -454,10 +544,20 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/11951404551259485484/55D835B4DB10B9473C45FE8C9844DE73A2EB6E76/",
     "timeUpdated": 1752224003
   },
+  "kz_ego": {
+    "id": "3750045826",
+    "previewUrl": "https://images.steamusercontent.com/ugc/11075166893509072004/3EF550B2542B08552473DD11AA7D24BE014B6712/",
+    "timeUpdated": 1783224454
+  },
   "kz_ehcivec_final": {
     "id": "3082213334",
     "previewUrl": "https://images.steamusercontent.com/ugc/22057455406360778/C9A2E165E69B23AE4F8B42ACC43BA0675CC3B8B6/",
     "timeUpdated": 1771804226
+  },
+  "kz_encephalitis": {
+    "id": "3648053791",
+    "previewUrl": "https://images.steamusercontent.com/ugc/15515322961839785090/80FE0442B32BAF9E478BD092C24DB87643B8A03D/",
+    "timeUpdated": 1778376080
   },
   "kz_engram": {
     "id": "3759997670",
@@ -499,6 +599,11 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/12674943877843071127/1839E6AAE3B3D80FDD6FC6DDA75FB409FC3CCE05/",
     "timeUpdated": 1751569760
   },
+  "kz_flood": {
+    "id": "3394250961",
+    "previewUrl": "https://images.steamusercontent.com/ugc/33311771365072343/5002F75D33C282F26AB3F728865AFD621C849593/",
+    "timeUpdated": 1735578141
+  },
   "kz_forest_retreat": {
     "id": "3766903085",
     "previewUrl": "https://images.steamusercontent.com/ugc/13972475706186760498/193C541B748DE6BB5D3403B2809E2AC3969AB995/",
@@ -528,6 +633,11 @@
     "id": "3694971410",
     "previewUrl": "https://images.steamusercontent.com/ugc/11471204156597326909/D4219C91DD974EDFDEC069F652040336C8FC8FD9/",
     "timeUpdated": 1776106799
+  },
+  "kz_generic": {
+    "id": "3070316567",
+    "previewUrl": "https://images.steamusercontent.com/ugc/2213016405729981598/E3A29204C6853EBFFB6E5DBFB1CFB6EB289EDC77/",
+    "timeUpdated": 1698982523
   },
   "kz_geometrydash_rofl": {
     "id": "3400789439",
@@ -569,6 +679,16 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/16887021893697142709/6701C8AE3147DF0CCCACF2A7E3B3C68FE0E9041C/",
     "timeUpdated": 1767744736
   },
+  "kz_haki_v2": {
+    "id": "3280439252",
+    "previewUrl": "https://images.steamusercontent.com/ugc/2547430415586316823/5D41C009FA261B9CB188EC48E59794AD0A0BE8BA/",
+    "timeUpdated": 1720715893
+  },
+  "kz_haste": {
+    "id": "3547715518",
+    "previewUrl": "https://images.steamusercontent.com/ugc/9333149407425872245/DB881B2CC915718BD33F7D445B7CF29F684E9DA3/",
+    "timeUpdated": 1765467068
+  },
   "kz_hb_7864": {
     "id": "3256277396",
     "previewUrl": "https://images.steamusercontent.com/ugc/2495638295521559626/7494C9D5A534792084630A6B4F69016467A31086/",
@@ -591,8 +711,8 @@
   },
   "kz_hb_wangdefa": {
     "id": "3776801864",
-    "previewUrl": "https://images.steamusercontent.com/ugc/16060486224568695111/4F24743056013D5908D597CEB65CF9190A2709CF/",
-    "timeUpdated": 1786419563
+    "previewUrl": "https://images.steamusercontent.com/ugc/16972338968120373370/C62AA92166BAA50897BFC2938C9EE715122D145B/",
+    "timeUpdated": 1786450286
   },
   "kz_hb_xiaowan": {
     "id": "3647571333",
@@ -624,10 +744,25 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/13390666823427213647/32373021CF5496FA91CF1539C1A9234A71DA1EDC/",
     "timeUpdated": 1754815726
   },
+  "kz_hex": {
+    "id": "3584437689",
+    "previewUrl": "https://images.steamusercontent.com/ugc/17327033206911883325/B5406B197594E6C9F1C8783BA9FB9395536824A8/",
+    "timeUpdated": 1770021316
+  },
   "kz_highland": {
     "id": "3520692787",
     "previewUrl": "https://images.steamusercontent.com/ugc/12316146765756138401/AEFE87156599CAD8017D75AF425EE81B60C3329F/",
     "timeUpdated": 1752027684
+  },
+  "kz_hillside": {
+    "id": "3520691363",
+    "previewUrl": "https://images.steamusercontent.com/ugc/18408480818730942506/EAA87D3A2C0169E53EF65D4B9EFC36F16CAA20EB/",
+    "timeUpdated": 1769399348
+  },
+  "kz_hitech": {
+    "id": "3411324243",
+    "previewUrl": "https://images.steamusercontent.com/ugc/10728047554862253156/E3A633E0436BA74A500BA7631316B95E7E4290DB/",
+    "timeUpdated": 1755448590
   },
   "kz_hoist": {
     "id": "3455113833",
@@ -754,6 +889,11 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/11538986575371558353/C17562147BB6FFC3A9DAE27755052F73CFD3C09A/",
     "timeUpdated": 1772850627
   },
+  "kz_kiwideath": {
+    "id": "3530161696",
+    "previewUrl": "https://images.steamusercontent.com/ugc/10208584621140843608/9204DDAB55C8AE0C08A2D569B36A568768DB7C9C/",
+    "timeUpdated": 1753078344
+  },
   "kz_kiwiexophoric": {
     "id": "3605180671",
     "previewUrl": "https://images.steamusercontent.com/ugc/12390218558172897139/160AA52A3B1C7A4E7059BD9F66160CB33331AC9D/",
@@ -778,6 +918,11 @@
     "id": "3422410968",
     "previewUrl": "https://images.steamusercontent.com/ugc/13241037307181713113/165D748ECBA4C87C29E15EEEBF6BE68F62235D42/",
     "timeUpdated": 1767346567
+  },
+  "kz_kiwimirific": {
+    "id": "3422257088",
+    "previewUrl": "https://images.steamusercontent.com/ugc/13807059634971484349/A82D2F6C8B08654375F1BC1AF4FB025E288BCC0A/",
+    "timeUpdated": 1786348236
   },
   "kz_kiwinoumena": {
     "id": "3687526805",
@@ -824,6 +969,11 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/9435446506070796924/E716C18C2125FB3D9887D6B07474A1CC926BF5FD/",
     "timeUpdated": 1769036255
   },
+  "kz_kiwiterror": {
+    "id": "3531203692",
+    "previewUrl": "https://images.steamusercontent.com/ugc/15936626938437023828/E00A4F63DD59EBC53A47F27F8B1CBCDCE9B1A42A/",
+    "timeUpdated": 1781457341
+  },
   "kz_kiwitown": {
     "id": "3639168180",
     "previewUrl": "https://images.steamusercontent.com/ugc/14734012546136236947/5DD6D90D49458E5CAAB7D5B96667FA3279D38EC7/",
@@ -854,6 +1004,11 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/18208732153190566855/CBF2B2BBA062D0F00072BAA2CB23EE0250877A96/",
     "timeUpdated": 1773486912
   },
+  "kz_kuutio": {
+    "id": "3567982777",
+    "previewUrl": "https://images.steamusercontent.com/ugc/10301637653533649536/D90EE4F356B83F053300165F8BC5141B306307EC/",
+    "timeUpdated": 1758496865
+  },
   "kz_kzro_hardhoodoo": {
     "id": "3668040543",
     "previewUrl": "https://images.steamusercontent.com/ugc/9297505667617213289/39658B8CDA07858BD515873CF15A85DA3DAA0F09/",
@@ -878,6 +1033,11 @@
     "id": "3164403123",
     "previewUrl": "https://images.steamusercontent.com/ugc/13299868473897807686/726EE1CE66C24488D924AD0FB9CFAC2665A86985/",
     "timeUpdated": 1758301574
+  },
+  "kz_ladderdespair": {
+    "id": "3234811937",
+    "previewUrl": "https://images.steamusercontent.com/ugc/53583512065984026/8A7574CF01B7E8A90B4CD375D3A0BB7AD602618A/",
+    "timeUpdated": 1739976861
   },
   "kz_ladderhell": {
     "id": "3236545332",
@@ -913,6 +1073,11 @@
     "id": "3747717986",
     "previewUrl": "https://images.steamusercontent.com/ugc/17538534510791525962/25789AC1EFC6D732CAD8A55ED74EF61714ED255D/",
     "timeUpdated": 1786263746
+  },
+  "kz_lionheart": {
+    "id": "3352277813",
+    "previewUrl": "https://images.steamusercontent.com/ugc/10041145110100713030/0ADDB7CBFE975613D6AA1B2F2F6D66C06792688F/",
+    "timeUpdated": 1776881159
   },
   "kz_lmn": {
     "id": "3355230567",
@@ -959,6 +1124,11 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/13828375569654587700/AED88126239770750E97E0E50E856FD8A7E0E23D/",
     "timeUpdated": 1775588002
   },
+  "kz_lust": {
+    "id": "3218634538",
+    "previewUrl": "https://images.steamusercontent.com/ugc/2517023966845912309/79063570BC9D5801B948DDDFEB83935EA860D87D/",
+    "timeUpdated": 1712841041
+  },
   "kz_luv_less": {
     "id": "3461550188",
     "previewUrl": "https://images.steamusercontent.com/ugc/15783986820230366986/63AB2C1B286082A7D61EC985A1D80F09CF9F4561/",
@@ -973,6 +1143,11 @@
     "id": "3599637784",
     "previewUrl": "https://images.steamusercontent.com/ugc/13363103605089679893/492B2040362BB6BE443C1573A239EF6CEDDCF6A6/",
     "timeUpdated": 1778533324
+  },
+  "kz_maldives": {
+    "id": "3759771524",
+    "previewUrl": "https://images.steamusercontent.com/ugc/10076676845957410398/8E3D2C1C2CDC255A4B560CA74A64047C4F80752C/",
+    "timeUpdated": 1784624508
   },
   "kz_mandelbrot": {
     "id": "3480216540",
@@ -1014,6 +1189,11 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/12391620757666049468/D6314550AC589BF80462F25D16DBDFB041F2A09A/",
     "timeUpdated": 1758616414
   },
+  "kz_misaka": {
+    "id": "3249152112",
+    "previewUrl": "https://images.steamusercontent.com/ugc/7417357809017541/DF66678130CE5AE313A9C5FA4388EC9BAA9044D9/",
+    "timeUpdated": 1736075260
+  },
   "kz_mjs_katharaxith": {
     "id": "3458031044",
     "previewUrl": "https://images.steamusercontent.com/ugc/15578321611197723019/8F9612C3473E259E11F0B681A2C29B914CC9B1F8/",
@@ -1038,6 +1218,11 @@
     "id": "3462474928",
     "previewUrl": "https://images.steamusercontent.com/ugc/25440534864153654/0223E845BC7EE1F8AB40509CFB07160DF51763E2/",
     "timeUpdated": 1775252692
+  },
+  "kz_moonlight": {
+    "id": "3287653784",
+    "previewUrl": "https://images.steamusercontent.com/ugc/9381654086963925103/43E24CCB06608EFF532C594B8F533A879B4EF73A/",
+    "timeUpdated": 1764213847
   },
   "kz_moorerutan": {
     "id": "3348711619",
@@ -1064,6 +1249,21 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/16276280632924645768/D3754BF2F63B591C5FA362E7341873C88F9141C0/",
     "timeUpdated": 1778838070
   },
+  "kz_mz": {
+    "id": "3468891853",
+    "previewUrl": "https://images.steamusercontent.com/ugc/17779721554248037167/2404B6609C5AF6C547691730A1952BAA3C6291E8/",
+    "timeUpdated": 1786111235
+  },
+  "kz_natureblock": {
+    "id": "3587639210",
+    "previewUrl": "https://images.steamusercontent.com/ugc/10336322798335297995/90E55621CD9A0C17F4E5DD0A0387A8DAD6786B72/",
+    "timeUpdated": 1764707680
+  },
+  "kz_neighbourhood": {
+    "id": "3075731680",
+    "previewUrl": "https://images.steamusercontent.com/ugc/53585497843801332/DBFD8C56D271514293213751A48C4AEA458A1D4A/",
+    "timeUpdated": 1742130071
+  },
   "kz_nerve": {
     "id": "3719943018",
     "previewUrl": "https://images.steamusercontent.com/ugc/12603441620012240142/7748CD199801CEB801BF9BFCABFF34D04085208F/",
@@ -1073,6 +1273,16 @@
     "id": "3160291769",
     "previewUrl": "https://images.steamusercontent.com/ugc/16906171051294877414/A8131A463C6E25F20D6DAAA2C2877CE75146F997/",
     "timeUpdated": 1775587985
+  },
+  "kz_nightcastle": {
+    "id": "3461115770",
+    "previewUrl": "https://images.steamusercontent.com/ugc/14995928135234655584/DFD146775CA4EBAF86C8E20ABE995CE090ABE90F/",
+    "timeUpdated": 1763407768
+  },
+  "kz_nix": {
+    "id": "3587750305",
+    "previewUrl": "https://images.steamusercontent.com/ugc/11081314182572466283/27668990A9CB7B4B0043A3BCCB55FCDA77F7E58E/",
+    "timeUpdated": 1762206376
   },
   "kz_noir": {
     "id": "3637362685",
@@ -1094,6 +1304,26 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/14047995416637163485/18A8D866E4D1F88B23ED8CA2A813E54F7C10C407/",
     "timeUpdated": 1780393159
   },
+  "kz_obsidian": {
+    "id": "3332796414",
+    "previewUrl": "https://images.steamusercontent.com/ugc/15947667895210683880/176D7B4FBA0C2D78239DE4665C5293260BA0B778/",
+    "timeUpdated": 1779668443
+  },
+  "kz_okaychamp": {
+    "id": "3430093272",
+    "previewUrl": "https://images.steamusercontent.com/ugc/10732945032972002735/D4949F65BDFDDEC533847E8A773A0CBA61B22BF9/",
+    "timeUpdated": 1757524499
+  },
+  "kz_old_depression": {
+    "id": "3595493972",
+    "previewUrl": "https://images.steamusercontent.com/ugc/15879046565832719907/28D1285CA70FA13D2A71F8000C52428A54EA5CD7/",
+    "timeUpdated": 1764094804
+  },
+  "kz_oloramasa": {
+    "id": "3421622610",
+    "previewUrl": "https://images.steamusercontent.com/ugc/10818632663580015910/C6F7087A2D220694975C42618D7A370354037212/",
+    "timeUpdated": 1768849791
+  },
   "kz_onlime": {
     "id": "3333177952",
     "previewUrl": "https://images.steamusercontent.com/ugc/16831094331682865262/0CE0CBC6920D8DFE1AEDE3A73FF7F03A891C746F/",
@@ -1103,6 +1333,11 @@
     "id": "3688727257",
     "previewUrl": "https://images.steamusercontent.com/ugc/13882686840812167865/1F36E169F918EE37BFABA51AFC9983D455619BCD/",
     "timeUpdated": 1782300954
+  },
+  "kz_opus": {
+    "id": "3349672933",
+    "previewUrl": "https://images.steamusercontent.com/ugc/2456242493942470960/32EA0EB0F99F9A97A720E7E78B324081BB6FB214/",
+    "timeUpdated": 1729077843
   },
   "kz_orbolution_v2": {
     "id": "3598215482",
@@ -1119,6 +1354,11 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/10388635450867418077/E1EF661D2000B24892375C214CDA0D9FADEF09F0/",
     "timeUpdated": 1767446133
   },
+  "kz_overworld_a2": {
+    "id": "3520697738",
+    "previewUrl": "https://images.steamusercontent.com/ugc/15649360315038415851/1882ECFFBF7941D0E312096B3D443A120155D7E4/",
+    "timeUpdated": 1752027747
+  },
   "kz_ozark": {
     "id": "3561356772",
     "previewUrl": "https://images.steamusercontent.com/ugc/18079108674139097702/14B9613FCFC44F21A064E94CBC6E2CA2F23CE688/",
@@ -1133,6 +1373,11 @@
     "id": "3607151664",
     "previewUrl": "https://images.steamusercontent.com/ugc/11064799247985146570/7B0BD6EB6106910A076604D45D0F867A00BBDABE/",
     "timeUpdated": 1767983805
+  },
+  "kz_paradise": {
+    "id": "3276365521",
+    "previewUrl": "https://images.steamusercontent.com/ugc/43448510691675648/E342E21AFC1E414C1DF7348A79174330F8B10BAF/",
+    "timeUpdated": 1741654129
   },
   "kz_pendulum": {
     "id": "3467509619",
@@ -1334,10 +1579,20 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/14933905109745862567/C10F7794B8D83994AE567A195BFFB74F424F9607/",
     "timeUpdated": 1775200047
   },
+  "kz_silly_metamodernity": {
+    "id": "3718800235",
+    "previewUrl": "https://images.steamusercontent.com/ugc/12146791221843997935/40DA2047D2166C146DA9A238B22060024E03C680/",
+    "timeUpdated": 1780892118
+  },
   "kz_sillybhop_wake": {
     "id": "3736034501",
     "previewUrl": "https://images.steamusercontent.com/ugc/13878786858675803450/2F49C7BD69733057D7AAA259A4692C6C914B6CF5/",
     "timeUpdated": 1780209461
+  },
+  "kz_sillycats_final": {
+    "id": "3602483686",
+    "previewUrl": "https://images.steamusercontent.com/ugc/12969415769879964609/B92BDFBFEDD18EBB134F55A6ABBED6CAC1706070/",
+    "timeUpdated": 1762921069
   },
   "kz_sillychicken": {
     "id": "3679498494",
@@ -1378,6 +1633,11 @@
     "id": "3413033794",
     "previewUrl": "https://images.steamusercontent.com/ugc/17887596202279568037/C1B02945DE8048EAB0DFC6FA64833B9049A57ED4/",
     "timeUpdated": 1769297362
+  },
+  "kz_slide_deee": {
+    "id": "3560421641",
+    "previewUrl": "https://images.steamusercontent.com/ugc/15944243000564787848/6E63C97C6750D45D8A139EBD4825BE092FF86F05/",
+    "timeUpdated": 1768319167
   },
   "kz_slide_dydanhomon": {
     "id": "3329135256",
@@ -1464,6 +1724,11 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/10305106305747199896/4DF1E36105F39B82EFA57476CBF79B512DC092E1/",
     "timeUpdated": 1763802932
   },
+  "kz_sonder": {
+    "id": "3276936665",
+    "previewUrl": "https://images.steamusercontent.com/ugc/2505772116855458690/05EDFBE1D180CF3FC77D1D713A61AF738771B5C8/",
+    "timeUpdated": 1719552103
+  },
   "kz_sp1_behold": {
     "id": "3520700792",
     "previewUrl": "https://images.steamusercontent.com/ugc/16996097623972141094/260E9F0CC3EF035D4C8E5E5B667D61A5E53127CE/",
@@ -1544,6 +1809,11 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/10004725606133189174/C41780E1A2FDA6F819A23B0D1BFDC35361AD12F2/",
     "timeUpdated": 1775679027
   },
+  "kz_sxb2_cxz": {
+    "id": "3083714192",
+    "previewUrl": "https://images.steamusercontent.com/ugc/16248905761753328335/75978A48664DA12203C0DE9B967A849E8E61F339/",
+    "timeUpdated": 1786263809
+  },
   "kz_sxb2_despacito": {
     "id": "3658764063",
     "previewUrl": "https://images.steamusercontent.com/ugc/9889571750134364925/A47F4CD0963D2E04DB5FD8EB9BD4265166DB64DF/",
@@ -1558,6 +1828,11 @@
     "id": "3240801191",
     "previewUrl": "https://images.steamusercontent.com/ugc/15622538800237245353/39F166543D99EEF27BFC30B12900143D2DFE0DF0/",
     "timeUpdated": 1782901911
+  },
+  "kz_sxb2_misato": {
+    "id": "3082850001",
+    "previewUrl": "https://images.steamusercontent.com/ugc/9922410034629895090/7F4244D159C08D1C811516F1AFAEF72772ABF976/",
+    "timeUpdated": 1786284274
   },
   "kz_sxb2_onlyslide": {
     "id": "3370381464",
@@ -1594,6 +1869,11 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/10969404698832762169/6C7ABA9D1D21B56B19D67FE6238097ECE435073A/",
     "timeUpdated": 1769593351
   },
+  "kz_test3": {
+    "id": "3324913372",
+    "previewUrl": "https://images.steamusercontent.com/ugc/12793602941897086378/E792A5A2132869123E152A7BB226E594787AD271/",
+    "timeUpdated": 1785224518
+  },
   "kz_test_map": {
     "id": "3499296736",
     "previewUrl": "https://images.steamusercontent.com/ugc/18102512234124948443/8AF70B3D79F76F16F236E20FD4A72A2CD9B60D39/",
@@ -1611,13 +1891,18 @@
   },
   "kz_toofaded": {
     "id": "3678967447",
-    "previewUrl": "https://images.steamusercontent.com/ugc/14948766297916893675/80C0EA7D4A96326FBF01D7E1F1F867156E7210ED/",
-    "timeUpdated": 1786430699
+    "previewUrl": "https://images.steamusercontent.com/ugc/13071750310953790376/0D986E52FEF08A680D4878EE6B609B67A5E6DFCC/",
+    "timeUpdated": 1786476411
   },
   "kz_topsecret": {
     "id": "3584830777",
     "previewUrl": "https://images.steamusercontent.com/ugc/11133772071359729616/638E5E51DAF45A6265218E115FA66C64CCA65EE5/",
     "timeUpdated": 1779708934
+  },
+  "kz_tranquility": {
+    "id": "3085685607",
+    "previewUrl": "https://images.steamusercontent.com/ugc/2278325580576205339/F8E686674A7C851A49D83AF9F5D4A2F84A3728F1/",
+    "timeUpdated": 1705790546
   },
   "kz_twiivo": {
     "id": "3600371852",
@@ -1689,6 +1974,11 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/16262698439255068232/D5B6ED2588B6E5BBDB4EE9D385E80A46E326AF52/",
     "timeUpdated": 1747253757
   },
+  "kz_weightless": {
+    "id": "3453892880",
+    "previewUrl": "https://images.steamusercontent.com/ugc/38950155487105264/B5D4FEEAC6D0F0E742BF1DF350F11CE6E8F387B8/",
+    "timeUpdated": 1743206855
+  },
   "kz_wetlands": {
     "id": "3464982214",
     "previewUrl": "https://images.steamusercontent.com/ugc/53589216350401877/758CCEC723E1385BCBA3C1D9384D102B7AD7AADD/",
@@ -1703,6 +1993,11 @@
     "id": "3654067635",
     "previewUrl": "https://images.steamusercontent.com/ugc/13675640919113650308/07FEE40E718FC7ADC0042AEFBAC42315E9644CB2/",
     "timeUpdated": 1774066161
+  },
+  "kz_wishyouwerehere": {
+    "id": "3759885779",
+    "previewUrl": "https://images.steamusercontent.com/ugc/11754169075044072344/27044A99E48F80E420CCEE3F9D2A0CFAFB686E21/",
+    "timeUpdated": 1784488032
   },
   "kz_woodstock_v2": {
     "id": "3489356818",
@@ -1768,6 +2063,11 @@
     "id": "3465890453",
     "previewUrl": "https://images.steamusercontent.com/ugc/9370578724317471751/A0812047F83A5B2D7CF1D108B5CF697960327534/",
     "timeUpdated": 1778846630
+  },
+  "kz_zhongbitu": {
+    "id": "3612290420",
+    "previewUrl": "https://images.steamusercontent.com/ugc/17136854565126022150/9E05BA45AD7E70D2CF0483F33DDF6F5878721A75/",
+    "timeUpdated": 1768405905
   },
   "kz_zoomer_fix": {
     "id": "3479838886",
