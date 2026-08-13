@@ -59,7 +59,30 @@ describe("checkImagesDir", () => {
     expect(await files(dir)).toEqual(["kz_bar.jpg"]);
   });
 
-  it("rejects a file whose stem is not a legal map name, leaving it in place", async () => {
+  it("accepts a hand upload with a non-kz storable name and transcodes it", async () => {
+    const dir = await makeTempDir();
+    await writeFile(path.join(dir, "de_dust2.png"), await png());
+
+    const outcome = await checkImagesDir(dir);
+
+    expect(outcome.problems).toEqual([]);
+    expect(outcome.transcoded).toEqual(["de_dust2.png"]);
+    expect(await files(dir)).toEqual(["de_dust2.jpg"]);
+  });
+
+  it("rejects a stem that is not storable and names the storable-name rule", async () => {
+    const dir = await makeTempDir();
+    await writeFile(path.join(dir, "2fort.jpg"), Buffer.from([0xff, 0xd8]));
+
+    const outcome = await checkImagesDir(dir);
+
+    expect(outcome.transcoded).toEqual([]);
+    expect(outcome.problems).toHaveLength(1);
+    expect(outcome.problems[0]).toContain("2fort.jpg");
+    expect(outcome.problems[0]).toContain("^[a-z][a-z0-9_]*$");
+  });
+
+  it("rejects a file whose stem is not a storable map name, leaving it in place", async () => {
     const dir = await makeTempDir();
     await writeFile(path.join(dir, "KZ_Shouted.jpg"), Buffer.from([0xff, 0xd8]));
     await writeFile(path.join(dir, "my map.png"), await png());

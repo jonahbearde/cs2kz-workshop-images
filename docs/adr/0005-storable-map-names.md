@@ -1,0 +1,9 @@
+# Storable map names widen hand uploads; the index stays KZ-only
+
+The public URL contract (ADR 0001) keeps its shape — `images/<name>.jpg`, all JPEG, flat directory — but the set of accepted filenames splits into two predicates. The Workshop side is unchanged: enumeration, download, Stale detection, and the Index still only ever see Legal map names (`^kz_[a-z0-9_]+$`). The storage side widens: `pnpm check` accepts any Storable map name (`^[a-z][a-z0-9_]*$`), so the maintainer can hand-upload images for non-KZ maps (the motivating case: official `de_` maps). Such images are permanent, not stopgaps. Because the Sync only acts on Winners and Winners are only ever Legal map names, a non-kz image can never be discovered, overwritten, or re-downloaded; `diffRepo` ignores stored maps with no Winner, and an empty Index record can never be judged Stale. Non-kz images are excluded from `index.json` at rebuild time, so the Index keeps its exact meaning — KZ Workshop metadata — and consumers address non-kz images by URL alone. The trade is deliberate: the contract's strength is that the URL is a pure function of the name, and that property survives the widening; what is guarded here is the *automation's* surface, not the URL shape.
+
+## Considered Options
+
+- Whitelist only `de_` alongside `kz_` — rejected: every future exception would need another decision and another change; the automation guard (Legal map name) is what actually protects the store, so the storage predicate can be open.
+- Keep one predicate for both storage and Workshop eligibility — rejected: widening it would let a Workshop item titled `de_xxx` become a Winner and overwrite a hand upload; splitting the predicates encodes "hand-upload-only" directly.
+- Record non-kz images in `index.json` with empty metadata — rejected: the Index would stop meaning "KZ Workshop metadata", and consumers that iterate it would see entries that can never have Workshop links.

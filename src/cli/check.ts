@@ -7,11 +7,12 @@ const INDEX_FILE = "index.json";
 
 /**
  * Supports hand uploads, fully offline (no Steam API):
- *  1. rejects files whose stem is not a Legal map name,
+ *  1. rejects files whose stem is not a Storable map name (ADR 0005),
  *  2. transcodes non-JPEG files to JPEG in place,
- *  3. rebuilds index.json from what images/ holds (ADR 0002) — maps with no
- *     known Workshop record keep their previous index entry, or get an empty
- *     one until the next Scan enriches it.
+ *  3. rebuilds index.json from what images/ holds (ADR 0002) — kz maps with
+ *     no known Workshop record keep their previous index entry, or get an
+ *     empty one until the next Scan enriches it; non-kz maps never enter
+ *     the index (ADR 0005).
  */
 async function main(): Promise<void> {
   await mkdir(IMAGES_DIR, { recursive: true });

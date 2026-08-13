@@ -35,8 +35,13 @@ describe("listRepoMaps", () => {
     expect(await listRepoMaps(dir)).toEqual(["kz_a"]);
   });
 
-  it("drops .jpg files whose stem is not a legal map name", async () => {
-    const dir = await makeTempImagesDir(["kz_ok.jpg", "Bad Name.jpg", "kz_Mixed.jpg"]);
+  it("includes storable non-kz maps alongside kz maps", async () => {
+    const dir = await makeTempImagesDir(["kz_ok.jpg", "de_dust2.jpg"]);
+    expect(await listRepoMaps(dir)).toEqual(["de_dust2", "kz_ok"]);
+  });
+
+  it("drops .jpg files whose stem is not a storable map name", async () => {
+    const dir = await makeTempImagesDir(["kz_ok.jpg", "Bad Name.jpg", "kz_Mixed.jpg", "2fort.jpg"]);
     expect(await listRepoMaps(dir)).toEqual(["kz_ok"]);
   });
 
@@ -114,6 +119,16 @@ describe("buildIndex", () => {
     const index = buildIndex({ repoMaps: ["kz_a"], winners, previous: {} });
     expect(Object.keys(index)).toEqual(["kz_a"]);
   });
+
+  it("excludes storable non-kz maps from the index entirely", () => {
+    const previous = { de_dust2: { id: "", previewUrl: "", timeUpdated: 0 } };
+    const index = buildIndex({
+      repoMaps: ["kz_a", "de_dust2"],
+      winners: pickWinners([makeItem({ title: "kz_a", id: "1" })]),
+      previous,
+    });
+    expect(Object.keys(index)).toEqual(["kz_a"]);
+  });
 });
 
 describe("rebuildIndexFile", () => {
@@ -127,6 +142,14 @@ describe("rebuildIndexFile", () => {
 
     const second = await rebuildIndexFile({ imagesDir: dir, indexPath, winners });
     expect(second).toEqual({ outcome: "unchanged", mapCount: 1 });
+  });
+
+  it("counts only index entries, not storable non-kz repo images", async () => {
+    const dir = await makeTempImagesDir(["kz_a.jpg", "de_dust2.jpg"]);
+    const indexPath = path.join(dir, "index.json");
+
+    const result = await rebuildIndexFile({ imagesDir: dir, indexPath, winners: new Map() });
+    expect(result).toEqual({ outcome: "updated", mapCount: 1 });
   });
 });
 

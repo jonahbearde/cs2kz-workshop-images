@@ -1,6 +1,6 @@
 import { readFile, readdir, rename, writeFile } from "node:fs/promises";
 import type { WorkshopItem } from "../workshop/types.js";
-import { isLegalMapName } from "./filter.js";
+import { isLegalMapName, isStorableMapName } from "./filter.js";
 import { originalImageUrl } from "./images.js";
 
 /**
@@ -21,8 +21,10 @@ export type WorkshopIndex = Record<string, IndexRecord>;
 
 /**
  * The map names this repo actually stores — read from the `.jpg` files under
- * `images/`, the source of truth for the index (ADR 0002). Illegal stems are
- * dropped: the index only ever contains legal map names.
+ * `images/`, the source of truth for the index (ADR 0002). Stems that are
+ * not even Storable map names are dropped. Storable-but-not-legal names
+ * (hand-uploaded non-kz images) stay in the list so the Sync's diff can see
+ * and ignore them, but they never enter the index itself (ADR 0005).
  */
 export async function listRepoMaps(imagesDir: string): Promise<string[]> {
   let entries: string[];
@@ -34,7 +36,7 @@ export async function listRepoMaps(imagesDir: string): Promise<string[]> {
   return entries
     .filter((entry) => entry.endsWith(".jpg"))
     .map((entry) => entry.slice(0, -".jpg".length))
-    .filter(isLegalMapName)
+    .filter(isStorableMapName)
     .sort();
 }
 
@@ -70,7 +72,9 @@ export function parseIndex(json: string | undefined): WorkshopIndex {
  * Rebuilds the index from what the repo holds, not what the Workshop
  * currently has (ADR 0002). For each stored map the metadata resolves as:
  * current Winner > previous index record > empty record (hand upload whose
- * Workshop item was never seen here).
+ * Workshop item was never seen here). Storable-but-not-legal map names
+ * (hand-uploaded non-kz images) are skipped: the index only ever contains
+ * KZ maps (ADR 0005).
  */
 export function buildIndex(options: {
   repoMaps: string[];
@@ -79,6 +83,7 @@ export function buildIndex(options: {
 }): WorkshopIndex {
   const index: WorkshopIndex = {};
   for (const name of [...options.repoMaps].sort()) {
+    if (!isLegalMapName(name)) continue;
     const winner = options.winners.get(name);
     if (winner !== undefined) {
       index[name] = {
@@ -147,9 +152,10 @@ export async function rebuildIndexFile(options: {
 }): Promise<{ outcome: "updated" | "unchanged"; mapCount: number }> {
   const repoMaps = await listRepoMaps(options.imagesDir);
   const previous = await readIndexFile(options.indexPath);
-  const rendered = renderIndex(buildIndex({ repoMaps, winners: options.winners, previous }));
+  const index = buildIndex({ repoMaps, winners: options.winners, previous });
+  const rendered = renderIndex(index);
   const outcome = await writeIndexFile(options.indexPath, rendered);
-  return { outcome, mapCount: repoMaps.length };
+  return { outcome, mapCount: Object.keys(index).length };
 }
 
 /** Fixed key order and no stray fields, even for hand-edited records. */

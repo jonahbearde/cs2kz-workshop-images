@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import { readFile, readdir, rename, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { isLegalMapName } from "./filter.js";
+import { isStorableMapName } from "./filter.js";
 import { toJpeg } from "./transcode.js";
 
 export interface CheckOutcome {
@@ -13,8 +13,10 @@ export interface CheckOutcome {
 
 /**
  * Prepares `images/` for hand uploads: rejects files whose stem is not a
- * Legal map name (never normalized) and transcodes non-JPEG files to JPEG in
- * place, replacing the original. Already-correct `.jpg` files are untouched.
+ * Storable map name (never normalized) and transcodes non-JPEG files to JPEG
+ * in place, replacing the original. Already-correct `.jpg` files are
+ * untouched. Storable names are wider than Legal map names (ADR 0005): a
+ * hand upload may carry a non-kz prefix.
  */
 export async function checkImagesDir(imagesDir: string): Promise<CheckOutcome> {
   const outcome: CheckOutcome = { transcoded: [], problems: [] };
@@ -25,8 +27,8 @@ export async function checkImagesDir(imagesDir: string): Promise<CheckOutcome> {
     const name = entry.name;
     const stem = stemOf(name);
 
-    if (!isLegalMapName(stem)) {
-      outcome.problems.push(`illegal map name: "${name}" (must match ^kz_[a-z0-9_]+$)`);
+    if (!isStorableMapName(stem)) {
+      outcome.problems.push(`not a storable map name: "${name}" (must match ^[a-z][a-z0-9_]*$)`);
       continue;
     }
     if (name === `${stem}.jpg`) continue; // already the stored form

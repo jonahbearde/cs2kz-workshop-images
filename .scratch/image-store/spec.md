@@ -59,7 +59,7 @@ A public GitHub repo (`jonahbearde/cs2kz-workshop-images`) that stores exactly o
 ### CLI commands (pnpm scripts)
 
 - `pnpm download` — one-shot local seeder: enumerate → filter → Winners → download Preview images (skip existing files) → transcode → write `images/<name>.jpg` → generate `index.json`.
-- `pnpm check` — local validator for hand uploads: verify filenames are Legal map names, transcode non-JPEGs in place to JPEG, rebuild `index.json`.
+- `pnpm check` — local validator for hand uploads: verify filenames are Legal map names, transcode non-JPEGs in place to JPEG, rebuild `index.json`. _(Amended by ADR 0005: `pnpm check` now accepts the wider Storable map name, and non-kz maps never enter `index.json`.)_
 - `pnpm scan` — what the workflow runs: enumerate → diff against repo → rebuild and write `index.json` → print report → send Telegram messages.
 
 ### GitHub Actions workflow

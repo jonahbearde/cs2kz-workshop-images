@@ -11,8 +11,12 @@ A CS2 Workshop item whose title starts with `kz_` and otherwise contains only lo
 _Avoid_: climb map, kz 图
 
 **Legal map name**:
-A map title matching `^kz_[a-z0-9_]+$`. It is also the image filename stem (`<name>.jpg`). Titles that don't match are rejected outright, never normalized.
+A map title matching `^kz_[a-z0-9_]+$`. It is also the image filename stem (`<name>.jpg`). Titles that don't match are rejected outright, never normalized. This is the Workshop-side predicate: enumeration, download, Stale detection, and the Index only ever see Legal map names. Storage is governed by the wider Storable map name.
 _Avoid_: normalized name
+
+**Storable map name**:
+A name matching `^[a-z][a-z0-9_]*$` — what `pnpm check` accepts into `images/`. Every Legal map name is Storable, plus hand-uploaded non-kz names (e.g. `de_dust2`). Storable-but-not-legal images are permanent: the Sync never discovers, overwrites, or indexes them.
+_Avoid_: legal name, filename
 
 **Winner**:
 When several Workshop items share one legal map name, the one with the most recent `time_updated`. It is the only item whose preview image is stored.
@@ -41,7 +45,7 @@ A KZ map whose `.jpg` exists in this repo but whose winner's preview URL differs
 _Avoid_: outdated, changed
 
 **Hand upload**:
-An image supplied by the maintainer instead of the Sync, as a fallback for when the Steam API misbehaves. It is a stopgap: the next Scan enriches its Index record with the winner's metadata, and a later Sync overwrites it whenever it diverges from the winner's preview.
+An image supplied by the maintainer instead of the Sync. For KZ maps it is a stopgap for when the Steam API misbehaves: the next Scan enriches its Index record with the winner's metadata, and a later Sync overwrites it whenever it diverges from the winner's preview. For non-kz maps (Storable but not Legal) it is permanent: the image never enters the Index and the Sync never touches it.
 _Avoid_: manual sync
 
 **No-preview**:
@@ -49,5 +53,5 @@ A KZ map whose winner has no preview image at all in the Workshop. Reported sepa
 _Avoid_: broken, empty
 
 **Index**:
-The `index.json` at the repo root mapping each legal map name to its Workshop metadata. Generated artifact, not hand-edited.
+The `index.json` at the repo root mapping each legal map name to its Workshop metadata. Generated artifact, not hand-edited. Contains KZ maps only — hand-uploaded non-kz images never appear in it.
 _Avoid_: manifest, registry
