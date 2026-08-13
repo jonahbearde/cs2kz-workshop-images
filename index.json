@@ -337,7 +337,7 @@
   "kz_claustrolapse": {
     "id": "3777707694",
     "previewUrl": "https://images.steamusercontent.com/ugc/10002387070979862369/381EB710A5595A75847AF94CFF113BF031B94DAF/",
-    "timeUpdated": 1786446814
+    "timeUpdated": 1786531622
   },
   "kz_claustrophilia": {
     "id": "3753577696",
@@ -348,6 +348,11 @@
     "id": "3691546808",
     "previewUrl": "https://images.steamusercontent.com/ugc/15086450630953463373/44F2CE5F46AF797F5606AC9F96ED12BEE45656D6/",
     "timeUpdated": 1785678248
+  },
+  "kz_claustroscend": {
+    "id": "3782229260",
+    "previewUrl": "https://images.steamusercontent.com/ugc/12758887163676840623/8E26776DCDAEF035D2E6E702886398260846E431/",
+    "timeUpdated": 1786562343
   },
   "kz_colors": {
     "id": "3160120310",
@@ -1371,8 +1376,8 @@
   },
   "kz_pale": {
     "id": "3607151664",
-    "previewUrl": "https://images.steamusercontent.com/ugc/11064799247985146570/7B0BD6EB6106910A076604D45D0F867A00BBDABE/",
-    "timeUpdated": 1767983805
+    "previewUrl": "https://images.steamusercontent.com/ugc/14424834494010346502/891B2A51A5D9AAB0E34D2A03107676B13D7750A3/",
+    "timeUpdated": 1786556134
   },
   "kz_paradise": {
     "id": "3276365521",
@@ -1891,8 +1896,8 @@
   },
   "kz_toofaded": {
     "id": "3678967447",
-    "previewUrl": "https://images.steamusercontent.com/ugc/13071750310953790376/0D986E52FEF08A680D4878EE6B609B67A5E6DFCC/",
-    "timeUpdated": 1786476411
+    "previewUrl": "https://images.steamusercontent.com/ugc/10345553515947698061/AB2E36A08CFBEA0E036176FD115D05AA50D9F490/",
+    "timeUpdated": 1786527477
   },
   "kz_topsecret": {
     "id": "3584830777",
