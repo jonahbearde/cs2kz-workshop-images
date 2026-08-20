@@ -39,7 +39,7 @@ describe("downloadAll", () => {
     const download = vi.fn();
     const { deps: downloadDeps, written } = deps({ download });
 
-    const outcome = await downloadAll([], downloadDeps);
+    const { outcome } = await downloadAll([], downloadDeps);
 
     expect(outcome).toEqual({ downloaded: [], updated: [], failures: [] });
     expect(download).not.toHaveBeenCalled();
@@ -49,7 +49,7 @@ describe("downloadAll", () => {
   it("downloads missing tasks and classifies them as downloaded", async () => {
     const { deps: downloadDeps, written } = deps();
 
-    const outcome = await downloadAll([missing("kz_a"), missing("kz_b")], downloadDeps);
+    const { outcome } = await downloadAll([missing("kz_a"), missing("kz_b")], downloadDeps);
 
     expect(outcome.downloaded).toEqual(["kz_a", "kz_b"]);
     expect(outcome.updated).toEqual([]);
@@ -61,7 +61,7 @@ describe("downloadAll", () => {
   it("classifies stale tasks as updated", async () => {
     const { deps: downloadDeps } = deps();
 
-    const outcome = await downloadAll([stale("kz_old")], downloadDeps);
+    const { outcome } = await downloadAll([stale("kz_old")], downloadDeps);
 
     expect(outcome).toEqual({ downloaded: [], updated: ["kz_old"], failures: [] });
   });
@@ -74,7 +74,7 @@ describe("downloadAll", () => {
       });
     const { deps: downloadDeps, sleeps } = deps({ download });
 
-    const outcome = await downloadAll([missing("kz_a")], downloadDeps);
+    const { outcome } = await downloadAll([missing("kz_a")], downloadDeps);
 
     expect(outcome.downloaded).toEqual(["kz_a"]);
     expect(download).toHaveBeenCalledTimes(3);
@@ -88,7 +88,7 @@ describe("downloadAll", () => {
     });
     const { deps: downloadDeps, sleeps, written } = deps({ download });
 
-    const outcome = await downloadAll([missing("kz_a")], downloadDeps);
+    const { outcome } = await downloadAll([missing("kz_a")], downloadDeps);
 
     expect(outcome.downloaded).toEqual([]);
     expect(outcome.failures).toEqual([
@@ -118,7 +118,7 @@ describe("downloadAll", () => {
     });
     const { deps: downloadDeps, written } = deps({ download });
 
-    const outcome = await downloadAll([missing("kz_bad"), missing("kz_good"), stale("kz_fresh")], downloadDeps);
+    const { outcome } = await downloadAll([missing("kz_bad"), missing("kz_good"), stale("kz_fresh")], downloadDeps);
 
     expect(outcome.downloaded).toEqual(["kz_good"]);
     expect(outcome.updated).toEqual(["kz_fresh"]);
@@ -133,9 +133,32 @@ describe("downloadAll", () => {
       },
     });
 
-    const outcome = await downloadAll([missing("kz_a")], downloadDeps);
+    const { outcome } = await downloadAll([missing("kz_a")], downloadDeps);
 
     expect(outcome.failures).toEqual([{ name: "kz_a", reason: "ENOSPC: no space left on device" }]);
+  });
+
+  it("returns per-task results carrying the stored JPEGs, in task order", async () => {
+    const { deps: downloadDeps } = deps();
+
+    const { results } = await downloadAll(
+      [missing("kz_a"), stale("kz_d"), missing("kz_bad")],
+      {
+        ...downloadDeps,
+        download: async (url) => {
+          if (url.includes("bad")) throw new Error("boom");
+          return Buffer.from(url);
+        },
+      },
+    );
+
+    expect(results.map((r) => r.name)).toEqual(["kz_a", "kz_d", "kz_bad"]);
+    expect(results[0]).toMatchObject({ name: "kz_a", kind: "missing", ok: true });
+    expect(results[0]!.jpeg).toEqual(Buffer.from("https://ugc.example/kz_a.jpg/"));
+    expect(results[1]).toMatchObject({ name: "kz_d", kind: "stale", ok: true });
+    expect(results[2]).toMatchObject({ name: "kz_bad", kind: "missing", ok: false });
+    expect(results[2]!.jpeg).toBeUndefined();
+    expect(results[2]!.reason).toBe("boom");
   });
 
   it("truncates failure reasons that would blow Telegram's line budget", async () => {
@@ -146,7 +169,7 @@ describe("downloadAll", () => {
       },
     });
 
-    const outcome = await downloadAll([missing("kz_a")], downloadDeps);
+    const { outcome } = await downloadAll([missing("kz_a")], downloadDeps);
 
     expect(outcome.failures[0]!.reason.length).toBeLessThanOrEqual(301);
     expect(outcome.failures[0]!.reason.endsWith("…")).toBe(true);

@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { makeItem } from "../pipeline/fixtures.js";
 import { diffRepo } from "../report/diff.js";
-import { renderReport } from "../report/render.js";
+import { renderScanReport } from "../report/render.js";
 import type { WorkshopItem } from "../workshop/types.js";
 import { runScan } from "./scan.js";
 import type { ScanDeps } from "./scan.js";
@@ -46,7 +46,7 @@ describe("runScan", () => {
     const result = await runScan(scanDeps);
 
     expect(sent).toEqual(
-      renderReport(
+      renderScanReport(
         diffRepo(
           new Map([
             ["kz_have", items[0]!],
@@ -76,16 +76,16 @@ describe("runScan", () => {
     await runScan(scanDeps);
 
     expect(sendOrder.length).toBeGreaterThan(1);
-    expect(sendOrder).toEqual(renderReport(diffRepo(new Map(items.map((i) => [i.title, i])), [])));
+    expect(sendOrder).toEqual(renderScanReport(diffRepo(new Map(items.map((i) => [i.title, i])), [])));
   });
 
-  it("still sends the full report when nothing changed since yesterday", async () => {
+  it("still sends the report when nothing changed since yesterday", async () => {
     const items = [makeItem({ id: "1", title: "kz_have" })];
     const { deps: scanDeps, sent } = deps({ items, repoMaps: ["kz_have"] });
 
     await runScan(scanDeps);
 
-    expect(sent).toEqual(["✅ 1 | ⬇️ 0 | 🔄 0 | 🚫 0"]);
+    expect(sent).toEqual(["In Stock: 1"]);
   });
 
   it("reports stale maps when an index is supplied", async () => {
@@ -100,11 +100,11 @@ describe("runScan", () => {
 
     await runScan(scanDeps);
 
-    expect(sent[0]).toContain("🔄 1");
-    expect(sent[0]).toContain("🔄 Stale:");
+    expect(sent[0]).toContain("Updated (1):");
+    expect(sent[0]).toContain('<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=1">kz_a</a>');
   });
 
-  it("sends a failure notification naming the cause when enumeration fails", async () => {
+  it("sends a failure notification naming the cause, without an icon, when enumeration fails", async () => {
     const { deps: scanDeps, sent } = deps({
       enumerate: async () => {
         throw new Error("QueryFiles failed with HTTP 403");
@@ -112,7 +112,7 @@ describe("runScan", () => {
     });
 
     await expect(runScan(scanDeps)).rejects.toThrow("QueryFiles failed with HTTP 403");
-    expect(sent).toEqual(["❌ Scan failed: QueryFiles failed with HTTP 403"]);
+    expect(sent).toEqual(["Scan failed: QueryFiles failed with HTTP 403"]);
   });
 
   it("sends a failure notification when the index rebuild fails", async () => {
@@ -124,14 +124,13 @@ describe("runScan", () => {
     });
 
     await expect(runScan(scanDeps)).rejects.toThrow(/not valid JSON/);
-    expect(sent).toEqual(["❌ Scan failed: index.json is not valid JSON; refusing to rebuild over it"]);
+    expect(sent).toEqual(["Scan failed: index.json is not valid JSON; refusing to rebuild over it"]);
   });
 
   it("keeps the original error when the failure notification itself cannot be sent", async () => {
-    const send = vi
-      .fn(async (text: string) => {
-        if (text.startsWith("❌")) throw new Error("Telegram sendMessage failed: Unauthorized");
-      });
+    const send = vi.fn(async (text: string) => {
+      if (text.startsWith("Scan failed")) throw new Error("Telegram sendMessage failed: Unauthorized");
+    });
     const { deps: scanDeps } = deps({
       enumerate: async () => {
         throw new Error("boom");

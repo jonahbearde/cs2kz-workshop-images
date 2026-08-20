@@ -45,7 +45,7 @@ async function main(): Promise<void> {
     readIndex: () => readIndexFile(INDEX_FILE),
     rebuildIndex: (winners) =>
       rebuildIndexFile({ imagesDir: IMAGES_DIR, indexPath: INDEX_FILE, winners }),
-    send: (text) => telegram.send(text),
+    send: (text) => telegram.send({ kind: "text", text }),
   });
 
   console.error("");

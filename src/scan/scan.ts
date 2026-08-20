@@ -2,7 +2,7 @@ import { filterKzMaps } from "../pipeline/filter.js";
 import type { WorkshopIndex } from "../pipeline/indexer.js";
 import { pickWinners } from "../pipeline/winners.js";
 import { diffRepo } from "../report/diff.js";
-import { renderReport } from "../report/render.js";
+import { renderScanReport } from "../report/render.js";
 import type { WorkshopItem } from "../workshop/types.js";
 
 /** Everything the Scan needs from the outside world; wiring lives in the CLI. */
@@ -32,11 +32,13 @@ export interface ScanResult {
 }
 
 /**
- * One Scan run: enumerate → diff against the repo → index rebuild → report →
- * send. The report is always sent — an unchanged result still arrives, so
- * silence never means "the job died". When any stage fails, a failure
- * notification naming the cause is sent to the same chat as a best-effort
- * final step, and the original error is rethrown.
+ * One Scan run: enumerate → diff against the repo → index rebuild → text
+ * report → send. The report is always sent — an unchanged result still
+ * arrives, so silence never means "the job died". The Scan never downloads,
+ * so its report is the Sync's caption without marks or images: same
+ * sections, map names as Workshop links, no icons. When any stage fails, a
+ * failure notification naming the cause is sent to the same chat as a
+ * best-effort final step, and the original error is rethrown.
  */
 export async function runScan(deps: ScanDeps): Promise<ScanResult> {
   try {
@@ -46,7 +48,7 @@ export async function runScan(deps: ScanDeps): Promise<ScanResult> {
     const previousIndex = deps.readIndex !== undefined ? await deps.readIndex() : {};
     const diff = diffRepo(winners, repoMaps, previousIndex);
     const index = await deps.rebuildIndex(winners);
-    const messages = renderReport(diff);
+    const messages = renderScanReport(diff);
     // Sequential awaits: messages arrive in order.
     for (const message of messages) {
       await deps.send(message);
@@ -54,7 +56,7 @@ export async function runScan(deps: ScanDeps): Promise<ScanResult> {
     return { messages, index };
   } catch (error) {
     const reason = error instanceof Error ? error.message : String(error);
-    await deps.send(`❌ Scan failed: ${reason}`).catch(() => {
+    await deps.send(`Scan failed: ${reason}`).catch(() => {
       // Best-effort: never mask the original error with a notification failure.
     });
     throw error;

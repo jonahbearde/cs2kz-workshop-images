@@ -22,7 +22,7 @@ export interface ScanDiff {
   /** Stored maps whose winner's preview URL no longer matches the Index record (ADR 0004). */
   stale: MissingMap[];
   /** Winners with no preview image at all; nothing can be downloaded for them. */
-  noPreview: string[];
+  noPreview: MissingMap[];
 }
 
 /** Workshop page a maintainer opens to see (and grab) an item's previews. */
@@ -34,7 +34,8 @@ export function workshopPageUrl(id: string): string {
  * Partitions every Winner against the repo's images. Repo maps with no
  * Winner (delisted or not enumerated this run) are ignored: the diff only
  * ever surfaces maps the Sync can act on. All buckets are sorted by map
- * name so rendering is deterministic.
+ * name so rendering is deterministic. Every bucket carries name + Workshop
+ * URL so the report can render every map name as a link.
  *
  * Stale detection (ADR 0004): a stored map is Stale when the winner's
  * current preview URL differs from the `previewUrl` recorded in the Index.
@@ -61,7 +62,7 @@ export function diffRepo(
       continue;
     }
     if (winner.previewUrl === "") {
-      diff.noPreview.push(name);
+      diff.noPreview.push({ name, workshopUrl: workshopPageUrl(winner.id) });
     } else {
       diff.missing.push({ name, workshopUrl: workshopPageUrl(winner.id) });
     }

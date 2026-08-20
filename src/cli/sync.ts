@@ -1,6 +1,6 @@
 import path from "node:path";
 import { listRepoMaps, readIndexFile, rebuildIndexFile } from "../pipeline/indexer.js";
-import { fetchPreviewJpeg, writeImageAtomic } from "../pipeline/store.js";
+import { fetchPreviewJpeg, readImageFile, writeImageAtomic } from "../pipeline/store.js";
 import { runSync } from "../sync/sync.js";
 import { TelegramClient } from "../telegram/client.js";
 import { WorkshopClient } from "../workshop/client.js";
@@ -11,12 +11,11 @@ const INDEX_FILE = "index.json";
 /**
  * The daily Sync, runnable end-to-end on the maintainer's machine:
  * enumerate the Workshop, diff against images/ (with Stale detection),
- * send the report to Telegram, download every Missing preview and re-download
- * every Stale one, send the run-result message, and rebuild index.json.
- * Telegram never blocks the run — the store is the product — but any failed
- * send or download marks the run red via a non-zero exit. On a fatal error a
- * notification naming the cause goes to the same chat before exiting
- * non-zero.
+ * download every Missing preview and re-download every Stale one, send the
+ * single collage report, and rebuild index.json. Telegram never blocks the
+ * run — the store is the product — but any failed send or download marks
+ * the run red via a non-zero exit. On a fatal error a notification naming
+ * the cause goes to the same chat before exiting non-zero.
  */
 async function main(): Promise<void> {
   const apiKey = process.env.STEAM_API_KEY;
@@ -52,15 +51,13 @@ async function main(): Promise<void> {
       rebuildIndexFile({ imagesDir: IMAGES_DIR, indexPath: INDEX_FILE, winners }),
     download: (previewUrl) => fetchPreviewJpeg(previewUrl),
     write: (name, jpeg) => writeImageAtomic(path.join(IMAGES_DIR, `${name}.jpg`), jpeg),
-    send: (text) => telegram.send(text),
+    readImage: (name) => readImageFile(path.join(IMAGES_DIR, `${name}.jpg`)),
+    send: (message) => telegram.send(message),
     sleep: (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
   });
 
   console.error("");
-  for (const [i, message] of [...result.report, ...result.result].entries()) {
-    if (i > 0) console.log("");
-    console.log(message);
-  }
+  console.log(result.message.kind === "photo" ? result.message.caption : result.message.text);
   console.error(
     `\n${result.outcome.downloaded.length} downloaded, ${result.outcome.updated.length} updated, ` +
       `${result.outcome.failures.length} failed; index.json ${result.index.outcome} ` +

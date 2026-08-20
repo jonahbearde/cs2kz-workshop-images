@@ -42,11 +42,13 @@ describe("diffRepo", () => {
   });
 
   it("reports a winner with an empty preview URL as no-preview, not missing", () => {
-    const item = makeItem({ title: "kz_nopic", previewUrl: "" });
+    const item = makeItem({ id: "9", title: "kz_nopic", previewUrl: "" });
     const diff = diffRepo(winnersOf([item]), []);
     expect(diff.have).toEqual([]);
     expect(diff.missing).toEqual([]);
-    expect(diff.noPreview).toEqual(["kz_nopic"]);
+    expect(diff.noPreview).toEqual([
+      { name: "kz_nopic", workshopUrl: "https://steamcommunity.com/sharedfiles/filedetails/?id=9" },
+    ]);
   });
 
   it("no-preview wins over repo membership only when the map is absent from the repo", () => {
@@ -74,7 +76,10 @@ describe("diffRepo", () => {
     expect(diff.missing).toEqual([
       { name: "kz_alpha", workshopUrl: "https://steamcommunity.com/sharedfiles/filedetails/?id=1" },
     ]);
-    expect(diff.noPreview).toEqual(["kz_beta", "kz_silent"]);
+    expect(diff.noPreview).toEqual([
+      { name: "kz_beta", workshopUrl: "https://steamcommunity.com/sharedfiles/filedetails/?id=2" },
+      { name: "kz_silent", workshopUrl: "https://steamcommunity.com/sharedfiles/filedetails/?id=4" },
+    ]);
   });
 });
 

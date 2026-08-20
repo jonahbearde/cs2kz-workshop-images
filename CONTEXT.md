@@ -29,12 +29,16 @@ _Avoid_: thumbnail, screenshot
 ### Sync
 
 **Sync**:
-The daily scheduled job that brings this repo up to date with the Workshop: re-discovers KZ maps, diffs them against the images in this repo, downloads Missing previews, replaces Stale images, commits the result, and sends the Telegram report followed by a run-result message.
+The daily scheduled job that brings this repo up to date with the Workshop: re-discovers KZ maps, diffs them against the images in this repo, downloads Missing previews, replaces Stale images, sends the single collage report to Telegram, commits the result, and rebuilds the Index. The report always arrives after the download phase, so it reports facts, not intentions.
 _Avoid_: crawl, pipeline
 
 **Scan**:
-The first phase of the Sync: enumerates the Workshop, diffs it against the repo, rebuilds the Index, and sends the report to Telegram. The Scan itself never downloads or writes images.
+The first phase of the Sync: enumerates the Workshop, diffs it against the repo, rebuilds the Index, and sends a text-only report to Telegram. The Scan itself never downloads or writes images, so its report carries no `✓`/`✗` marks.
 _Avoid_: sync, crawl
+
+**Report**:
+The one Telegram message a Sync run sends after its downloads — a sharp-composited collage photo with an HTML caption, or a plain text message when the run produced no images at all. The caption's chat-facing labels are presentation of the domain buckets, not new domain nouns: `In Stock: N` is the `have` count, `New` lists the `Missing` maps, `Updated` lists the `Stale` maps, and `No preview` lists the `No-preview` bucket. Per-line `✓`/`✗` marks say whether that map's image was downloaded and stored this run, and every map name is a link to its Workshop page. The caption carries no other icons.
+_Avoid_: run result, scan report followed by run-result message
 
 **Missing**:
 A KZ map whose winner has a preview image in the Workshop but no corresponding `.jpg` in this repo. The Sync downloads it automatically.

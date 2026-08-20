@@ -1,4 +1,4 @@
-import { rename, writeFile } from "node:fs/promises";
+import { readFile, rename, writeFile } from "node:fs/promises";
 import { originalImageUrl } from "./images.js";
 import { toJpeg } from "./transcode.js";
 
@@ -11,6 +11,11 @@ export async function fetchPreviewJpeg(previewUrl: string): Promise<Buffer> {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`HTTP ${res.status} from ${url}`);
   return toJpeg(Buffer.from(await res.arrayBuffer()));
+}
+
+/** Reads a stored image — the pre-overwrite snapshot behind an Updated pair's old half. */
+export async function readImageFile(target: string): Promise<Buffer> {
+  return readFile(target);
 }
 
 /** Write aside, then rename: an interrupted run never leaves a half-written image. */
