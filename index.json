@@ -594,6 +594,11 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/2456242493947972221/CD0608A55D79EBF31CEEBF447C89CD7E2AB9E9C2/",
     "timeUpdated": 1729171395
   },
+  "kz_erratum": {
+    "id": "3800050651",
+    "previewUrl": "https://images.steamusercontent.com/ugc/17865756595681518090/4BEBFA8BDECBF6DF66F9EA9D417490C79A22EC27/",
+    "timeUpdated": 1789209671
+  },
   "kz_evelor": {
     "id": "3785879853",
     "previewUrl": "https://images.steamusercontent.com/ugc/9753673893130179451/A9F942218C9BF35246CC43D15934C42F979AB78D/",
@@ -741,8 +746,8 @@
   },
   "kz_hb_wangdefa": {
     "id": "3776801864",
-    "previewUrl": "https://images.steamusercontent.com/ugc/17926519739868520714/82B2901EC60487909115A6E1DA294ED8D2671E1D/",
-    "timeUpdated": 1787790649
+    "previewUrl": "https://images.steamusercontent.com/ugc/11386712945813012657/64D1B0367FF328C12D06FFED3AD043D5ACB69B66/",
+    "timeUpdated": 1789202282
   },
   "kz_hb_xiaowan": {
     "id": "3647571333",
@@ -1612,7 +1617,7 @@
   "kz_sc_ruins": {
     "id": "3767757448",
     "previewUrl": "https://images.steamusercontent.com/ugc/14840464370179992166/2389457638769A1E577D5875D466C6A951E48650/",
-    "timeUpdated": 1788981478
+    "timeUpdated": 1789212082
   },
   "kz_sc_surf": {
     "id": "3766436460",
