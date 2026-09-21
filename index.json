@@ -346,8 +346,8 @@
   },
   "kz_claustrophilia": {
     "id": "3753577696",
-    "previewUrl": "https://images.steamusercontent.com/ugc/13689159928373229747/08C87924BDC74EDF7AE8B00B4FBE6B2EB4FB667F/",
-    "timeUpdated": 1786140305
+    "previewUrl": "https://images.steamusercontent.com/ugc/9331313506800374732/62735F064EAE78C83CBE256FD35E0B92AD0B2AF1/",
+    "timeUpdated": 1789918951
   },
   "kz_claustrophobia": {
     "id": "3691546808",
@@ -634,6 +634,11 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/12674943877843071127/1839E6AAE3B3D80FDD6FC6DDA75FB409FC3CCE05/",
     "timeUpdated": 1751569760
   },
+  "kz_fikablock": {
+    "id": "3803177142",
+    "previewUrl": "https://images.steamusercontent.com/ugc/14458340467566437786/0AB638882FA6FBE3875BB4A3953AE12F0F077230/",
+    "timeUpdated": 1789919191
+  },
   "kz_flood": {
     "id": "3394250961",
     "previewUrl": "https://images.steamusercontent.com/ugc/33311771365072343/5002F75D33C282F26AB3F728865AFD621C849593/",
@@ -660,9 +665,9 @@
     "timeUpdated": 1789629239
   },
   "kz_futureblock": {
-    "id": "3499868617",
-    "previewUrl": "https://images.steamusercontent.com/ugc/16612382334921600724/522247365B7B205FAC725D0D41AF9BD24F275BCF/",
-    "timeUpdated": 1750074307
+    "id": "3515673845",
+    "previewUrl": "https://images.steamusercontent.com/ugc/11389503825640603680/338DD4DF278CC8BD5EA7BBD9033B24FFA9C8703F/",
+    "timeUpdated": 1751569997
   },
   "kz_fuyu": {
     "id": "3694971410",
@@ -1347,7 +1352,7 @@
   "kz_noir": {
     "id": "3637362685",
     "previewUrl": "https://images.steamusercontent.com/ugc/18105535711976375734/CF421AC817365EBB50FBCC1970BB030535C845C6/",
-    "timeUpdated": 1772869660
+    "timeUpdated": 1789924167
   },
   "kz_nomibo": {
     "id": "3077122656",
@@ -1962,7 +1967,7 @@
   "kz_techtonic_v2_ldr": {
     "id": "3792212506",
     "previewUrl": "https://images.steamusercontent.com/ugc/16583207732140273152/1CEA64C30426931B8B991EAFF1748D9E68C73ACB/",
-    "timeUpdated": 1788268468
+    "timeUpdated": 1789921984
   },
   "kz_test3": {
     "id": "3324913372",
