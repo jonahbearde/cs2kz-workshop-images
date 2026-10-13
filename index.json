@@ -241,8 +241,8 @@
   },
   "kz_bozo": {
     "id": "3640501419",
-    "previewUrl": "https://images.steamusercontent.com/ugc/11080374048537125698/BD51F5813A064757837EBE25F43EEB011120816B/",
-    "timeUpdated": 1767712432
+    "previewUrl": "https://images.steamusercontent.com/ugc/12526696382082294141/38D6E5D9541E14963F6103BF85AAC95BDACAC03C/",
+    "timeUpdated": 1791835049
   },
   "kz_breezeblocks": {
     "id": "3515668627",
@@ -530,9 +530,9 @@
     "timeUpdated": 1773409001
   },
   "kz_divert": {
-    "id": "3555946660",
-    "previewUrl": "https://images.steamusercontent.com/ugc/15930597951107154032/F4801E371173F461C4636CD582FDFD8E4D7CB674/",
-    "timeUpdated": 1766687832
+    "id": "3692108902",
+    "previewUrl": "https://images.steamusercontent.com/ugc/10173336339406595719/9854DCFA11AC8306C6E0B84B753B54E241FEBF74/",
+    "timeUpdated": 1778516246
   },
   "kz_dog": {
     "id": "3071622478",
@@ -670,9 +670,9 @@
     "timeUpdated": 1791195553
   },
   "kz_futureblock": {
-    "id": "3499868617",
-    "previewUrl": "https://images.steamusercontent.com/ugc/16612382334921600724/522247365B7B205FAC725D0D41AF9BD24F275BCF/",
-    "timeUpdated": 1750074307
+    "id": "3515673845",
+    "previewUrl": "https://images.steamusercontent.com/ugc/11389503825640603680/338DD4DF278CC8BD5EA7BBD9033B24FFA9C8703F/",
+    "timeUpdated": 1751569997
   },
   "kz_fuyu": {
     "id": "3694971410",
@@ -1421,8 +1421,8 @@
   },
   "kz_old_depression": {
     "id": "3595493972",
-    "previewUrl": "https://images.steamusercontent.com/ugc/11435051199702862946/A120BBE3AAFA6632FF16B42547BCD046ACAAB1E9/",
-    "timeUpdated": 1791746081
+    "previewUrl": "https://images.steamusercontent.com/ugc/11497306174983810485/508EC6719658B0ADFAB1576259C3D2140ED8DADD/",
+    "timeUpdated": 1791836291
   },
   "kz_oloramasa": {
     "id": "3421622610",
@@ -1594,6 +1594,11 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/15922328024165933146/0A88E2C9BCB6CD3A1246BD921B2B8FB4EBF49247/",
     "timeUpdated": 1755985851
   },
+  "kz_redemption": {
+    "id": "3818757917",
+    "previewUrl": "https://images.steamusercontent.com/ugc/14789700076601082108/60B1BEE6CB2DFE33356416E1C5681C5517FF82AB/",
+    "timeUpdated": 1791855846
+  },
   "kz_refurinfunflay": {
     "id": "3485831149",
     "previewUrl": "https://images.steamusercontent.com/ugc/15255047989139791825/6DAF8BF287D0BD47F78DF3C0B9775AA0BF391FAD/",
@@ -1611,8 +1616,8 @@
   },
   "kz_retribution": {
     "id": "3779008333",
-    "previewUrl": "https://images.steamusercontent.com/ugc/10285970585879177981/8F73CC814BE1E6082DEE0779E4A05DFB9007A918/",
-    "timeUpdated": 1791224735
+    "previewUrl": "https://images.steamusercontent.com/ugc/11834898156066493430/63D676587CBBC0878D43D23E06AE82CEA0E264F0/",
+    "timeUpdated": 1791806343
   },
   "kz_retribution_v2_final": {
     "id": "3461578696",
@@ -1653,6 +1658,11 @@
     "id": "3718317934",
     "previewUrl": "https://images.steamusercontent.com/ugc/14303185389690068687/17CCE76ACCCC2E923047E9114E1AAA4AB801131F/",
     "timeUpdated": 1783218914
+  },
+  "kz_sakhalin": {
+    "id": "3818832735",
+    "previewUrl": "https://images.steamusercontent.com/ugc/12477940979278169239/3D38422F7944E953D504E350604A71AA41F0CA19/",
+    "timeUpdated": 1791848721
   },
   "kz_sanctuary": {
     "id": "3350663039",
