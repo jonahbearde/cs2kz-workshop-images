@@ -131,8 +131,8 @@
   },
   "kz_baxter": {
     "id": "3819196793",
-    "previewUrl": "https://images.steamusercontent.com/ugc/10072689471588002353/BB410E00264483EA40D125EDBF0C22D2FDAAAAE0/",
-    "timeUpdated": 1792060605
+    "previewUrl": "https://images.steamusercontent.com/ugc/11855001303050164867/C0BED916EEB70CB90BECD9EBFCA5F6F86C94BE44/",
+    "timeUpdated": 1792147577
   },
   "kz_bayharborbhopper": {
     "id": "3593758954",
@@ -675,9 +675,9 @@
     "timeUpdated": 1791195553
   },
   "kz_futureblock": {
-    "id": "3515673845",
-    "previewUrl": "https://images.steamusercontent.com/ugc/11389503825640603680/338DD4DF278CC8BD5EA7BBD9033B24FFA9C8703F/",
-    "timeUpdated": 1751569997
+    "id": "3499868617",
+    "previewUrl": "https://images.steamusercontent.com/ugc/16612382334921600724/522247365B7B205FAC725D0D41AF9BD24F275BCF/",
+    "timeUpdated": 1750074307
   },
   "kz_fuyu": {
     "id": "3694971410",
@@ -916,8 +916,8 @@
   },
   "kz_ken3inub": {
     "id": "3817874651",
-    "previewUrl": "https://images.steamusercontent.com/ugc/16960236196056828608/BBC6669F1290F9B9838F6DA074345DAB0BE0EFBC/",
-    "timeUpdated": 1792063420
+    "previewUrl": "https://images.steamusercontent.com/ugc/14015166039170315712/5AD4E0083B3BBC04B5D852283B5AA45D6262FD0A/",
+    "timeUpdated": 1792147693
   },
   "kz_kenz": {
     "id": "3662455275",
@@ -1401,8 +1401,8 @@
   },
   "kz_nomibo": {
     "id": "3077122656",
-    "previewUrl": "https://images.steamusercontent.com/ugc/15072122347905924219/EE075A1632E22EF07FCB4F21B856133A0C1FF0A7/",
-    "timeUpdated": 1792094792
+    "previewUrl": "https://images.steamusercontent.com/ugc/16247574666889478018/3FABB013572DB362F489011249CEBAF48B480B0E/",
+    "timeUpdated": 1792158042
   },
   "kz_notmute": {
     "id": "3159507211",
@@ -1666,8 +1666,8 @@
   },
   "kz_sakhalin": {
     "id": "3818832735",
-    "previewUrl": "https://images.steamusercontent.com/ugc/11994460148063011681/F775B697893E145B8C3C541442E6B6625BA1B6E1/",
-    "timeUpdated": 1792063384
+    "previewUrl": "https://images.steamusercontent.com/ugc/12930352400715581012/F2E99A31762F2FC74CF0DB3C3D38CB2E56962F6C/",
+    "timeUpdated": 1792196460
   },
   "kz_sanctuary": {
     "id": "3350663039",
@@ -1769,6 +1769,11 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/11469545765177508327/882C83C356F2011638F72B454533A67E407FCBE5/",
     "timeUpdated": 1779181693
   },
+  "kz_skweak": {
+    "id": "3820721032",
+    "previewUrl": "https://images.steamusercontent.com/ugc/11027694097467865104/F8F4ABA1CD842925B37A6786EE2E892C86074642/",
+    "timeUpdated": 1792147745
+  },
   "kz_skytower": {
     "id": "3276311176",
     "previewUrl": "https://images.steamusercontent.com/ugc/17617725981830538546/323B66D83687A376B1C91BE1FC5CCE6CC99EDB36/",
@@ -1837,7 +1842,7 @@
   "kz_slide_red": {
     "id": "3813588774",
     "previewUrl": "https://images.steamusercontent.com/ugc/10000532231018071894/A683DB9AD8D21E2C0A345FBEBBFD4AF11DF80508/",
-    "timeUpdated": 1791234569
+    "timeUpdated": 1792171566
   },
   "kz_slide_rov_od": {
     "id": "3808658563",
@@ -1921,8 +1926,8 @@
   },
   "kz_spacemario_xt": {
     "id": "3685524525",
-    "previewUrl": "https://images.steamusercontent.com/ugc/10537358143249912513/1A44CB8D23CE31D7B3FBA3AE224911F1F3F84126/",
-    "timeUpdated": 1773596029
+    "previewUrl": "https://images.steamusercontent.com/ugc/9942920120220402688/2AF169EE9B37E1DE6EF9A09FCC49EB3174CE0515/",
+    "timeUpdated": 1792153952
   },
   "kz_spire": {
     "id": "3352534882",
@@ -2153,6 +2158,11 @@
     "id": "3497005117",
     "previewUrl": "https://images.steamusercontent.com/ugc/12911957739215599381/DA20D910C49A41C83F85C41CBFEEC8133E2301CE/",
     "timeUpdated": 1750011246
+  },
+  "kz_void": {
+    "id": "3821135906",
+    "previewUrl": "https://images.steamusercontent.com/ugc/11682553949076354907/967FDFE5FCC9D71BE6A44FD9EDC734A4391D79A5/",
+    "timeUpdated": 1792197154
   },
   "kz_warcrime_business": {
     "id": "3715143084",
