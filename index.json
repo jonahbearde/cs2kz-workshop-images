@@ -114,6 +114,11 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/22049524493530709/B30E73FF89E98A38FEF1DF7A3B30D3D093D8466D/",
     "timeUpdated": 1732056276
   },
+  "kz_ascend_hv": {
+    "id": "3835152316",
+    "previewUrl": "https://images.steamusercontent.com/ugc/11377204552034898083/7051E5FFF185D95974398C3A75D1A443C8F6BC19/",
+    "timeUpdated": 1794117261
+  },
   "kz_asteroid_beach": {
     "id": "3771237485",
     "previewUrl": "https://images.steamusercontent.com/ugc/13089296290964247064/3187D18D37E5BEA272F24268263A066C4AF8DA30/",
@@ -128,6 +133,11 @@
     "id": "3583337319",
     "previewUrl": "https://images.steamusercontent.com/ugc/18117950213227198205/56BD8871934BA486E55AA2310639014B83CEA641/",
     "timeUpdated": 1762780268
+  },
+  "kz_azure": {
+    "id": "3835360980",
+    "previewUrl": "https://images.steamusercontent.com/ugc/11206975098418953393/2EC451A94A4CEB931CCF2C8A4912B6836E313932/",
+    "timeUpdated": 1794068710
   },
   "kz_banjo": {
     "id": "3558360812",
@@ -545,9 +555,9 @@
     "timeUpdated": 1773409001
   },
   "kz_divert": {
-    "id": "3692108902",
-    "previewUrl": "https://images.steamusercontent.com/ugc/10173336339406595719/9854DCFA11AC8306C6E0B84B753B54E241FEBF74/",
-    "timeUpdated": 1778516246
+    "id": "3555946660",
+    "previewUrl": "https://images.steamusercontent.com/ugc/15930597951107154032/F4801E371173F461C4636CD582FDFD8E4D7CB674/",
+    "timeUpdated": 1766687832
   },
   "kz_dog": {
     "id": "3071622478",
@@ -1901,8 +1911,8 @@
   },
   "kz_slide_rov_od": {
     "id": "3830131528",
-    "previewUrl": "https://images.steamusercontent.com/ugc/16311313590257571803/A29F65EA04ED6E9BA87C8EC1365CC3CC2913A69E/",
-    "timeUpdated": 1793890565
+    "previewUrl": "https://images.steamusercontent.com/ugc/9816135891908623526/42C1CF03755D7E0804F822B519E1BCE0FDA11C3C/",
+    "timeUpdated": 1794111263
   },
   "kz_slide_spm_simple": {
     "id": "3826856629",
