@@ -176,8 +176,8 @@
   },
   "kz_bhop_benchmark": {
     "id": "3699338304",
-    "previewUrl": "https://images.steamusercontent.com/ugc/11230428542652869425/563144CFCA688F033A2DEC662D5E6AA6DFC3D12D/",
-    "timeUpdated": 1792686996
+    "previewUrl": "https://images.steamusercontent.com/ugc/12717427833251654044/69F0A97E4DF347D9DB92822E491BCDC384944F49/",
+    "timeUpdated": 1795220439
   },
   "kz_bhop_koki_niwa": {
     "id": "3506881159",
@@ -360,9 +360,9 @@
     "timeUpdated": 1771938276
   },
   "kz_checkmate": {
-    "id": "3778553254",
-    "previewUrl": "https://images.steamusercontent.com/ugc/10366345292620369125/12011C25ECB88B4FDD747CDE3D997A6B47A615FB/",
-    "timeUpdated": 1786013298
+    "id": "3070194623",
+    "previewUrl": "https://images.steamusercontent.com/ugc/16245905561475639654/90B0DB328E341E45BB71131C9980A69E4B65F33C/",
+    "timeUpdated": 1758543625
   },
   "kz_cheese": {
     "id": "3515664229",
@@ -871,8 +871,8 @@
   },
   "kz_hitech": {
     "id": "3841711501",
-    "previewUrl": "https://images.steamusercontent.com/ugc/9760242746039952569/EAE4D858258BEEC935B6E270A8C9E1DA2A23FEAB/",
-    "timeUpdated": 1795097210
+    "previewUrl": "https://images.steamusercontent.com/ugc/18444819899069437975/D7408D768187569F5704728E663FD1D0BF4D40FF/",
+    "timeUpdated": 1795231027
   },
   "kz_hoist": {
     "id": "3455113833",
@@ -1534,6 +1534,11 @@
     "previewUrl": "https://images.steamusercontent.com/ugc/10388635450867418077/E1EF661D2000B24892375C214CDA0D9FADEF09F0/",
     "timeUpdated": 1767446133
   },
+  "kz_overgrowth": {
+    "id": "3834043273",
+    "previewUrl": "https://images.steamusercontent.com/ugc/13424564545391037959/9DB2B9933FFD28953B2562D6783A0195A9C4163F/",
+    "timeUpdated": 1795208343
+  },
   "kz_overworld_a2": {
     "id": "3520697738",
     "previewUrl": "https://images.steamusercontent.com/ugc/15649360315038415851/1882ECFFBF7941D0E312096B3D443A120155D7E4/",
@@ -1838,6 +1843,11 @@
     "id": "3703060683",
     "previewUrl": "https://images.steamusercontent.com/ugc/11469545765177508327/882C83C356F2011638F72B454533A67E407FCBE5/",
     "timeUpdated": 1779181693
+  },
+  "kz_skiz_v": {
+    "id": "3842817937",
+    "previewUrl": "https://images.steamusercontent.com/ugc/9639014809681262328/3F575F1D380CD9116CD0FD519B451583AB670EBF/",
+    "timeUpdated": 1795170850
   },
   "kz_skweak": {
     "id": "3820721032",
